@@ -1,0 +1,67 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 800px;
+}
+
+.form-submit {
+    background-color: rgb(0, 123, 255); 
+    border: none;
+    padding: 10px 20px; 
+    color: white; 
+    cursor: pointer;
+}
+
+
+.regis-form input[type="text"],
+.regis-form input[type="email"],
+.regis-form input[type="number"],
+.regis-form input[type="password"] {
+    
+    padding: 10px; 
+    border: none;
+    border-bottom: 2px solid rgb(87, 87, 87); 
+    outline: none; 
+    box-sizing: border-box; 
+    width: 100%;
+}
+
+
+.regis-form .form-group {
+    margin-bottom: 20px;
+}
+
+
+.signup-content{
+    display: flex;
+}
+.signup-form{
+    width: 500px;
+    margin-bottom:50px ;
+}
+
+
+img{
+    height: 400px;
+    width: 400px;
+}
+
+.login-link{
+    text-decoration: none;
+    color:rgb(74, 73, 73);
+    text-align: center;
+}
