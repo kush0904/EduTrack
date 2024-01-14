@@ -1,0 +1,227 @@
+/* GradeTracker.css */
+::-webkit-scrollbar {
+  display: none;
+}
+html,body{
+    margin: 0;
+    background: linear-gradient(to right, #cdf1c5, #c7e9c7, #73f473);
+}
+
+.container {
+    background: linear-gradient(to right, #cdf1c5, #c7e9c7, #73f473);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.Box1 {
+  flex: 1;
+  background-color: #ffffff;
+  height: auto;
+  width: auto;
+  margin: 15px  15px 7px 15px;
+  border: 3px solid #000000; 
+  border-radius: 10px; 
+}
+.Box2{
+  flex:7;
+  background-color: #ffffff;
+  height: auto;
+  width: auto;
+  margin: 0 15px 15px 15px;
+  border: 3px solid #000000; 
+  border-radius: 10px; 
+  
+}
+
+.sr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-image {
+  object-fit: contain;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+}
+
+.username {
+  font-family: cursive;
+  font-size: larger;
+  font-weight: bold;
+  color: blue;
+  margin: 5px;
+}
+
+.UserInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; 
+   margin: 3px;
+}
+
+.Heading {
+  color: darkgreen;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.Grades{
+  display: flex;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin:10px;
+
+}
+
+.table td, .table th {
+  
+  border: 3px solid black;
+  padding: 8px;
+ text-align: center;
+ vertical-align: middle;
+  
+}
+.table th{
+  font-family: cursive;
+  font-weight: bold;
+  font-size: large;
+}
+.table td{
+  font-family: cursive;
+  font-style: italic;
+}
+.sortDropdown{
+  width: auto !important;
+}
+
+.Btn1 {
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  border: solid black;
+  cursor: pointer;
+  background-color: #28a745;
+  color: white;
+  margin: 5px;
+  height:40px;
+  width: 80px;
+
+
+}
+.Btn1:hover {
+  background-color: #218838;
+}
+
+.Btn2 {
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+
+  border: solid black;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  margin: 5px;
+  height:40px;
+  width: 80px;
+}
+.Btn2:hover {
+  background-color: #0056b3;
+}
+
+
+.info {
+  margin: 10px;
+  font-size: 16px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: larger;
+  font-weight: bold;
+  color: black;
+}
+
+.value{
+  color: red;
+}
+
+/* Modal */
+
+.ReactModal__Overlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ReactModal__Content {
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.add:hover {
+  background-color: #0056b3;
+}
+.removeBtn{
+  background-color: #dc3545;
+  color: #fff;
+  border: black;
+  border-radius: 4px;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+  margin-right: 3px;
+}
