@@ -13,6 +13,7 @@ import Register from './components/Authorization/Register.jsx';
 import UserForm from './components/UserForm/UserForm.jsx';
 import MarksForm from './components/MarksForm/MarksForm.jsx';
 import Team from './components/Team/Team.jsx';
+import GradeTracker from './components/GradeTracker/GradeTracker';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -33,7 +34,7 @@ function App() {
                 <Route path="/UserForm" element={<UserForm />} />
                 <Route path="/MarksForm" element={<MarksForm />} />
                 <Route path="/team" element={<Team />} />
-                {/* Add other routes here */}
+                <Route path="/GradeTracker" element={<GradeTracker />} />
               </Routes>
             </main>
           </div>
