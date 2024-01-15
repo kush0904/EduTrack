@@ -1,6 +1,48 @@
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './register.css';
 export const Register =()=>{
+    const navigate = useNavigate();
+    const [user, setUser]=useState({
+        name: "", email: "", phone: "", password: ""
+    });
+
+    let name, value;
+    const handleInputs = (e) =>{
+        name=e.target.name;
+        value=e.target.value;
+
+        setUser({...user, [name]:value});
+    }
+
+    const PostData = async (e)=>{
+        e.preventDefault();
+
+        const {name, email, phone, password } = user;
+
+        const res =await fetch('http://localhost:5000/register', {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+                name, email, phone, password
+            })
+        });
+
+        const data= await res.json();
+
+        if(data.error || !data){
+            window.alert("Inavlid Registration");
+            console.log("Invalid Registration");
+        }
+        else{
+            window.alert("Registration Successfull");
+            console.log("Registration Successfull");
+
+            navigate("/login");
+        }
+    }
 
     return(
         <>
@@ -9,30 +51,40 @@ export const Register =()=>{
                 <div className="signup-content">
                     <div className="signup-form">
                         
-                        <form className="regis-form" id="regis-form">
+                        <form method='POST' className="regis-form" id="regis-form">
 
                             <div className="form-group">
                                 <label htmlFor="name"></label>
-                                <input type="text" name="name" id="name" placeholder='Your Name'/>
+                                <input type="text" name="name" id="name" placeholder='Your Name' 
+                                value={user.name}
+                                onChange={handleInputs}
+                                />
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="email"></label>
-                                <input type="email" name="email" id="email" placeholder='Your Email'/>
+                                <input type="email" name="email" id="email" placeholder='Your Email'
+                                value={user.email}
+                                onChange={handleInputs}/>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="phone"></label>
-                                <input type="number" name="phone" id="phone" placeholder='Your Phone'/>
+                                <input type="number" name="phone" id="phone" placeholder='Your Phone'
+                                value={user.phone}
+                                onChange={handleInputs}/>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="password"></label>
-                                <input type="password" name="password" id="password" placeholder='Your Password'/>
+                                <input type="password" name="password" id="password" placeholder='Your Password'
+                                value={user.password}
+                                onChange={handleInputs}/>
                             </div>
 
                             <div className="button">
-                                <input type="submit" name="signup" id="signup" className='form-submit' value="register"  />
+                                <input type="submit" name="signup" id="signup" className='form-submit' 
+                                value="register" onClick={PostData}/>
                             </div>
                         </form>
                         </div>
