@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { NavLink,useNavigate } from 'react-router-dom';
 import './login.css';
-export const Login =()=>{
+const  Login =()=>{
 
     const navigate=useNavigate();
 
@@ -81,3 +81,5 @@ export const Login =()=>{
         </>
     )
 }
+
+export default Login;

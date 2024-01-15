@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './register.css';
-export const Register =()=>{
+const Register =()=>{
     const navigate = useNavigate();
     const [user, setUser]=useState({
         name: "", email: "", phone: "", password: ""
@@ -102,3 +102,5 @@ export const Register =()=>{
         </>
     )
 }
+
+export default Register;
