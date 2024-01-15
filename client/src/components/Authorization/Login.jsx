@@ -1,9 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './login.css';
+export const Login =()=>{
 
-
-
-const Login =()=>{
     return(
         <>
         <section className="signup">
@@ -46,5 +44,3 @@ const Login =()=>{
         </>
     )
 }
-
-export default Login;

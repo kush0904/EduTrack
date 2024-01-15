@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './register.css';
+export const Register =()=>{
 
-const Register =()=>{
     return(
         <>
         <section className="signup">
@@ -50,5 +50,3 @@ const Register =()=>{
         </>
     )
 }
-
-export default Register;
