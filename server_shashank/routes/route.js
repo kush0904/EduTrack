@@ -13,9 +13,9 @@ router.get("/",(req,res)=>{
 
 //register route
 router.post("/register",(req,res)=>{
-    const {name , email, phone, password} = req.body;
+    const {name ,id, email, phone, password} = req.body;
 
-    if( !name || !email|| !phone|| !password){
+    if( !name || !id || !email|| !phone|| !password){
         return res.status(422).json({error: "PLz fill the required fields"})
     }
 
@@ -25,7 +25,7 @@ router.post("/register",(req,res)=>{
             return res.status(422).json({error: "Email already exist"})
         }
 
-        const user=new User({name , email, phone, password});
+        const user=new User({name , id, email, phone, password});
 
         //bcrypt password
         user.save().then(()=>{

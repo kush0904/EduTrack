@@ -4,7 +4,7 @@ import './register.css';
 const Register =()=>{
     const navigate = useNavigate();
     const [user, setUser]=useState({
-        name: "", email: "", phone: "", password: ""
+        name: "",id: "", email: "", phone: "", password: ""
     });
 
     let name, value;
@@ -18,7 +18,7 @@ const Register =()=>{
     const PostData = async (e)=>{
         e.preventDefault();
 
-        const {name, email, phone, password } = user;
+        const {name, id, email, phone, password } = user;
 
         const res =await fetch('http://localhost:5000/register', {
             method: "POST",
@@ -26,7 +26,7 @@ const Register =()=>{
                 "Content-Type" : "application/json"
             },
             body: JSON.stringify({
-                name, email, phone, password
+                name, id, email, phone, password
             })
         });
 
@@ -61,6 +61,14 @@ const Register =()=>{
                                 />
                             </div>
 
+                            <div className="form-group">
+                                <label htmlFor="id"></label>
+                                <input type="number" name="id" id="id" placeholder='Your Id' 
+                                value={user.id}
+                                onChange={handleInputs}
+                                />
+                            </div>
+                            
                             <div className="form-group">
                                 <label htmlFor="email"></label>
                                 <input type="email" name="email" id="email" placeholder='Your Email'
