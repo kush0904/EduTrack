@@ -14,7 +14,7 @@ import UserForm from './components/UserForm/UserForm.jsx';
 import MarksForm from './components/MarksForm/MarksForm.jsx';
 import Team from './components/Team/Team.jsx';
 import GradeTracker from './components/GradeTracker/GradeTracker';
-
+import RankingSystem from './components/RankingSystem/RankingSystem.jsx';
 function App() {
   const [theme, colorMode] = useMode();
 
@@ -35,6 +35,7 @@ function App() {
                 <Route path="/MarksForm" element={<MarksForm />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/GradeTracker" element={<GradeTracker />} />
+                <Route path="/RankingSystem" element={<RankingSystem/>} />
               </Routes>
             </main>
           </div>

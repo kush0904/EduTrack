@@ -1,5 +1,5 @@
 // GradeTracker.jsx
-import './GradeTracker.css';
+import'./GradeTracker.css'
 import UserImage from '../../assets/User.png';
 import UniImage from '../../assets/university.png';
 import degree from '../../assets/degree.png';

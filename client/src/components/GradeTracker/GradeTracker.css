@@ -6,13 +6,13 @@
   
 }
 
-.container {
+ .container {
   background: linear-gradient(to right, #000000, rgb(90, 89, 89));
   width: auto;
     height: auto;
     display: flex;
     flex-direction: column;
-}
+} 
 
 .Box1 {
   flex: 1;
