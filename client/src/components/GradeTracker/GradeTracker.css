@@ -1,41 +1,41 @@
-/* GradeTracker.css */
 ::-webkit-scrollbar {
   display: none;
 }
-html,body{
-    margin: 0;
-    background: linear-gradient(to right, #cdf1c5, #c7e9c7, #73f473);
+
+html, body {
+  margin: 0;
+  background: #111; 
+  color: #ddd; 
+  font-family: 'Arial', sans-serif;
 }
 
 .container {
-    background: linear-gradient(to right, #cdf1c5, #c7e9c7, #73f473);
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background: linear-gradient(to right, #111, #000); 
+  color: #ddd; 
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Box1, .Box2 {
+  background-color: #222; 
+  border: 3px solid #111;
 }
 
 .Box1 {
   flex: 1;
-  background-color: #ffffff;
-  height: auto;
-  width: auto;
-  margin: 15px  15px 7px 15px;
-  border: 3px solid #000000; 
-  border-radius: 10px; 
-}
-.Box2{
-  flex:7;
-  background-color: #ffffff;
-  height: auto;
-  width: auto;
-  margin: 0 15px 15px 15px;
-  border: 3px solid #000000; 
-  border-radius: 10px; 
-  
+  margin: 15px;
+  border-radius: 10px;
 }
 
-.sr{
+.Box2 {
+  flex: 7;
+  margin: 0 15px 15px 15px;
+  border-radius: 10px;
+}
+
+.sr {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,96 +49,115 @@ html,body{
 }
 
 .username {
-  font-family: cursive;
+  font-family: 'Cursive', sans-serif;
   font-size: larger;
   font-weight: bold;
-  color: blue;
+  color: #ff5757; 
   margin: 5px;
 }
 
 .UserInfo {
   display: flex;
   align-items: center;
-  justify-content: space-evenly; 
-   margin: 3px;
+  justify-content: space-evenly;
+  margin: 3px;
 }
 
 .Heading {
-  color: darkgreen;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #ddd; 
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 20px;
   font-weight: bold;
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 }
-.Grades{
+
+.Grades {
   display: flex;
 }
+
 .table {
   width: 100%;
   border-collapse: collapse;
-  margin:10px;
-
+  margin: 10px;
 }
 
 .table td, .table th {
-  
-  border: 3px solid black;
+  border: 3px solid #111;
   padding: 8px;
- text-align: center;
- vertical-align: middle;
-  
+  text-align: center;
+  vertical-align: middle;
 }
-.table th{
-  font-family: cursive;
+
+.table th {
+  font-family: 'Cursive', sans-serif;
   font-weight: bold;
   font-size: large;
 }
-.table td{
-  font-family: cursive;
+
+.table td {
+  font-family: 'Cursive', sans-serif;
   font-style: italic;
 }
-.sortDropdown{
+
+.sortDropdown {
   width: auto !important;
 }
 
-.Btn1 {
+.Btn1, .Btn2, .add, .removeBtn {
+  border: solid #ddd; 
+}
+
+.Btn1, .Btn2 {
+  background: linear-gradient(to right, #0074cc, #00539c); 
+  color: #fff; 
   display: inline-block;
   font-size: 16px;
   border-radius: 4px;
-  border: solid black;
   cursor: pointer;
-  background-color: #28a745;
-  color: white;
   margin: 5px;
-  height:40px;
+  height: 40px;
   width: 80px;
-
-
 }
+
 .Btn1:hover {
-  background-color: #218838;
+  background: linear-gradient(to right, #00539c, #003366); 
+  color: #fff; 
 }
 
-.Btn2 {
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 4px;
-
-  border: solid black;
-  cursor: pointer;
-  background-color: #007bff;
-  color: white;
-  margin: 5px;
-  height:40px;
-  width: 80px;
-}
 .Btn2:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to right, #00539c, #003366); 
+  color: #fff; 
 }
 
+.add {
+  background-color: #6bc46d; 
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add:hover {
+  background-color: #57a845; 
+}
+
+.removeBtn {
+  background-color: #fc5c65; 
+  color: #fff;
+  border: black;
+  border-radius: 4px;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+  margin-right: 3px;
+}
+
+.removeBtn:hover {
+  background-color: #db4a51; 
+}
 
 .info {
   margin: 10px;
@@ -146,14 +165,12 @@ html,body{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: larger;
   font-weight: bold;
-  color: black;
+  color: #ddd; 
 }
 
-.value{
-  color: red;
+.value {
+  color: #ff5757; 
 }
-
-/* Modal */
 
 .ReactModal__Overlay {
   position: relative;
@@ -171,7 +188,7 @@ html,body{
   position: relative;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
-  background-color: #fff;
+  background-color: #222; 
   padding: 20px;
   max-width: 400px;
   width: 100%;
@@ -205,23 +222,14 @@ input {
 }
 
 .add {
-  background-color: #007bff;
-  color: #fff;
+  background: linear-gradient(to right, #0074cc, #00539c); 
+  color: #fff; 
   padding: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
+
 .add:hover {
-  background-color: #0056b3;
-}
-.removeBtn{
-  background-color: #dc3545;
-  color: #fff;
-  border: black;
-  border-radius: 4px;
-  cursor: pointer;
-  height: auto;
-  width: auto;
-  margin-right: 3px;
+  background: linear-gradient(to right, #00539c, #003366); 
 }
