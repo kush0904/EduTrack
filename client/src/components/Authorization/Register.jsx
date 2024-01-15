@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './register.css';
-export const Register =()=>{
+const Register =()=>{
 
     return(
         <>
@@ -50,3 +50,5 @@ export const Register =()=>{
         </>
     )
 }
+
+export default Register;

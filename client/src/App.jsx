@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { useState } from 'react';
+import { ColorModeContext, useMode } from './components/theme';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import './App.css';
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+
+import SideBars from './components/Global/SideBar.jsx';
+import TopBar from './components/Global/TopBar.jsx';
+import DashBoard from './components/Dashboard/Dashboard.jsx';
+import Login from './components/Authorization/Login.jsx';
+import Register from './components/Authorization/Register.jsx';
+import UserForm from './components/UserForm/UserForm.jsx';
+import MarksForm from './components/MarksForm/MarksForm.jsx';
+import Team from './components/Team/Team.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [theme, colorMode] = useMode();
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className="app">
+            <SideBars />
+            <main className="content">
+              <TopBar />
+              <Routes>
+                <Route path="/" element={<DashBoard />} />
+                <Route path="/Register" element={<Register />} />
+                <Route path="/Login" element={<Login />} />
+                <Route path="/UserForm" element={<UserForm />} />
+                <Route path="/MarksForm" element={<MarksForm />} />
+                <Route path="/team" element={<Team />} />
+                {/* Add other routes here */}
+              </Routes>
+            </main>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </Router>
+  );
 }
 
-export default App
+export default App;

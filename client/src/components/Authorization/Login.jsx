@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './login.css';
-export const Login =()=>{
+const  Login =()=>{
 
     return(
         <>
@@ -44,3 +44,5 @@ export const Login =()=>{
         </>
     )
 }
+
+export default Login;
