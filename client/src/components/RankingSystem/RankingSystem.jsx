@@ -38,7 +38,8 @@ const RankingSystem = () => {
       const filteredRankings = originalRankings.filter(
         (student) =>
           student.studentName.toLowerCase().includes(searchResults.toLowerCase()) ||
-          student.class.toLowerCase().includes(searchResults.toLowerCase())
+          student.class.toLowerCase().includes(searchResults.toLowerCase()) ||
+          student.roll_no.toString().includes(searchResults)
       );
       setShowAllRankings(false); // Reset to show limited ranks
       setRankings(filteredRankings);
