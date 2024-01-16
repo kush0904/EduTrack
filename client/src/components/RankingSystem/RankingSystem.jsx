@@ -37,7 +37,8 @@ const RankingSystem = () => {
       const filteredRankings = originalRankings.filter(
         (student) =>
           student.studentName.toLowerCase().includes(searchResults.toLowerCase()) ||
-          student.class.toLowerCase().includes(searchResults.toLowerCase())
+          student.class.toLowerCase().includes(searchResults.toLowerCase()) ||
+          student.roll_no.toString().includes(searchResults)
       );
       setShowAllRankings(false); // Reset to show limited ranks
       setRankings(filteredRankings);
@@ -94,7 +95,6 @@ const RankingSystem = () => {
         </div>
   
         <SearchBar onSearch={handleSearch} />
-
         <Table striped bordered hover responsive>
           <thead>
             <tr>
