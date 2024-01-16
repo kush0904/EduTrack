@@ -9,13 +9,15 @@ export default function GoalSetting() {
     <>
       <section className="bg-light py-5 py-xl-8">
         <div className="container">
+          
           <div className="row justify-content-md-center bGImage">
             <div className="col-12 col-md-10 col-lg-8 col-xl-7 bannerDiv text-center">
               <h3 className="fs-6 mb-2 text-secondary text-center text-uppercase">hey "hustler"</h3>
               <h2 className="display-5 mb-5 text-center">declare your commitment now!</h2>
               <button className="addGoalsButton">
                 <Nav.Link as={Link} to="/goalsList" className="btn">
-                  Add Goal
+                  
+                  ADD GOALS!
                 </Nav.Link>
               </button>
             </div>
