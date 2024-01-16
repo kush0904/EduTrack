@@ -47,7 +47,7 @@ const Register =()=>{
     return(
         <>
         <section className="signup">
-            <div className="container"><h2 className="title">Sign up</h2>
+            <div className="registercontainer"><h2 className="title">Sign up</h2>
                 <div className="signup-content">
                     <div className="signup-form">
                         

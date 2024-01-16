@@ -7,6 +7,8 @@ import id from '../../assets/Id.png';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import { Box } from '@mui/material';
+import Header from '../Global/Header';
 import userId from './userIdStore';
 function GradeTracker() {
   const [grades, setGrades] = useState([]);
@@ -70,7 +72,11 @@ function GradeTracker() {
     } else {
       setSelectedFilterOption('None');
       
-      
+      axios.get('http://localhost:4001/getGrades')
+        .then(response => {
+          setGrades(response.data);
+        })
+        .catch(err => console.log(err));
     }
       
 
@@ -163,6 +169,8 @@ function GradeTracker() {
   };
 
   return (
+    <Box m="20px">
+    <Header title = "Grades Tracker" subtitle="Look!! Where you stand" />
     <div className="Grade-container">
       <div className="Grade-Box1">
         <div className='Grade-UserInfo'>
@@ -173,29 +181,29 @@ function GradeTracker() {
           <img src={degree} alt="User" className="Grade-user-image" />
           <span className="Grade-username">Computer Science</span>
           <img src={id} alt="User" className="Grade-user-image" />
-          <span className="Grade-username">{userId}</span>
+          <span className="Grade-username">2111981291</span>
         </div>
       </div>
       <div className="Grade-Box2">
         <div className='Grade-Heading'>
-        <button className='Grade-Btn1' onClick={openModal}>Add</button>
-        <button className='Grade-Btn2' onClick={toggleRemoveMode}>
-            {isRemoveMode ? 'Cancel ' : 'Remove '}
-          </button>
-          <h1>Grades Tracker</h1>          
+        <button className='button-30' onClick={openModal}>Add Data</button>
+        <button className="button-30" role="button"  onClick={toggleRemoveMode}>
+          {isRemoveMode ? 'Cancel ' : 'Remove Data '}
+        </button>
+      
           <div>
-          <label htmlFor="filterDropdown" className='Grade-label'>Filter:</label>
+          <label htmlFor="filterDropdown" className='Grade-label'></label>
             <select
               id="filterDropdown"
-              className="Grade-Btn2"
+              className="button-30"
               value={selectedFilterOption}
               onChange={handleFilterChange}
             >
-              <option value="None">None</option>
-              <option value="subject">Subject</option>
-              <option value="testType">Test</option>
-              <option value="maxMarks">Max</option>
-              <option value="scoredMarks">Scored</option>
+              <option value="None">Filter [none]</option>
+              <option value="subject">Filter by Subject</option>
+              <option value="testType">Filter by Test</option>
+              <option value="maxMarks">Filter by Max</option>
+              <option value="scoredMarks">Filter by Scored</option>
             </select>
           
           <Modal
@@ -223,19 +231,19 @@ function GradeTracker() {
         </Modal>
         </div>
           <div>
-          <label htmlFor="sortDropdown" className='Grade-label'>Sort:</label>
+          <label htmlFor="sortDropdown" className='Grade-label'></label>
         <select
           id="sortDropdown"
-          className="Grade-Btn2"
+          className="button-30"
           value={selectedSortOption}
           onChange={handleSortChange}
         >
-          <option value="Subject">Subject</option>
-          <option value="Test-type">Test</option>
-          <option value="Max-Marks">Max</option>
-          <option value="Scored Marks">Scored </option>
+          <option value="Subject">Sort By Subject</option>
+          <option value="Test-type">Sort By Test</option>
+          <option value="Max-Marks">Sort By Max</option>
+          <option value="Scored Marks">Sort By Scored </option>
         </select>
-        <button onClick={toggleSortOrder} className='Grade-removeBtn'>{sortOrder}</button>
+        <button onClick={toggleSortOrder} className='button-30'>{sortOrder}</button>
         </div>
         </div>
         <hr style={{ height: '2px', border: 'none', backgroundColor: 'hsl( 196.18deg 100% 52.75% )', marginLeft: '8px', marginRight: '8px' }} />      
@@ -253,13 +261,15 @@ function GradeTracker() {
               </tr>
             </thead>
             <tbody>
+
               {grades.map((grade, index) => (
                 
-                <tr key={index}>
+                <tr key={index} className='Grade.sr'>
                   <td className='Grade-srn'> {isRemoveMode && (
                     
                       <button onClick={() => handleRemoveGrade(grade._id)} className='Grade-removeBtn'>X</button>
                     )} {index + 1}</td>
+                    
                   <td>{grade.subject}</td>
                   <td>{grade.testType}</td>
                   <td>{grade.Date}</td>
@@ -344,7 +354,8 @@ function GradeTracker() {
       </div>
       
     </div>
+    </Box>
   );
 }
 
-export default GradeTracker;
+export default GradeTracker;
