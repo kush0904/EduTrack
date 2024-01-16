@@ -1,4 +1,4 @@
-// GradeTracker.jsx
+// GradeTracker.jsxAdd
 import'./GradeTracker.css'
 import UserImage from '../../assets/User.png';
 import UniImage from '../../assets/university.png';
@@ -7,7 +7,7 @@ import id from '../../assets/Id.png';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-
+import userId from './userIdStore';
 function GradeTracker() {
   const [grades, setGrades] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +21,15 @@ function GradeTracker() {
   const [isRemoveMode, setIsRemoveMode] = useState(false);
   const [selectedSortOption, setSelectedSortOption] = useState('Subject');
   const [sortOrder, setSortOrder] = useState('ASC');
-  const handleSortChange = (event) => {
+
+  const fetchGrades = () => {
+    axios.get('http://localhost:4001/getGrades')
+      .then(response => {
+        setGrades(response.data);
+      })
+      .catch(err => console.log(err));
+  };
+    const handleSortChange = (event) => { 
     const selectedOption = event.target.value;
     setSelectedSortOption(selectedOption);
     sortGrades(selectedOption, sortOrder);
@@ -31,19 +39,23 @@ function GradeTracker() {
     const newSortOrder = sortOrder === 'ASC' ? 'DSC' : 'ASC';
     setSortOrder(newSortOrder);
     sortGrades(selectedSortOption, newSortOrder);
+    fetchGrades();  
+
   };
 
   const sortGrades = (selectedOption, currentSortOrder) => {
-    axios.post('http://localhost:3001/sortGrades', { selectedOption, currentSortOrder })
+    axios.post('http://localhost:4001/sortGrades', { selectedOption, currentSortOrder })
       .then(response => {
         setGrades(response.data);
-      })
+      }) 
       .catch(err => console.log(err));
-  };
 
-  useEffect(() => {
+  }; 
+
+  useEffect(() => { 
     sortGrades(selectedSortOption, sortOrder);
-  }, [selectedSortOption, sortOrder]);
+    fetchGrades();  
+  }, [selectedSortOption, sortOrder]);  
 
   const [selectedFilterOption, setSelectedFilterOption] = useState('None');
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -58,23 +70,22 @@ function GradeTracker() {
     } else {
       setSelectedFilterOption('None');
       
-      axios.get('http://localhost:3001/getGrades')
-        .then(response => {
-          setGrades(response.data);
-        })
-        .catch(err => console.log(err));
+      
     }
+      
+
   };
 
   const closeFilterModal = () => {
     setIsFilterModalOpen(false);
     setFilterValue(''); 
+
   };
 
   
   const applyFilter = () => {
     if (selectedFilterOption !== 'None') {
-      axios.post('http://localhost:3001/filterGrades', {
+      axios.post('http://localhost:4001/filterGrades', {
         filterOption: selectedFilterOption,
         filterValue: filterValue,
       })
@@ -86,25 +97,34 @@ function GradeTracker() {
     }
   
     closeFilterModal();
+    fetchGrades();  
+
   };
   const openModal = () => {
     setIsModalOpen(true);
+    fetchGrades();  
+
   };
  
   const closeModal = () => {
     setIsModalOpen(false);
+    fetchGrades();  
+
   };
   const toggleRemoveMode = () => {
     setIsRemoveMode(!isRemoveMode);
+    fetchGrades();  
+
   };
 
   const handleRemoveGrade = (id) => {
-    axios.post('http://localhost:3001/removeGrade', { _id: id })
+    axios.post('http://localhost:4001/removeGrade', { _id: id })
       .then(response => {
         console.log('Grade removed successfully:', response.data);
         setGrades(prevGrades => prevGrades.filter(grade => grade._id !== id));
       })
       .catch(err => console.log(err));
+
   };
 
 
@@ -121,50 +141,53 @@ function GradeTracker() {
       ...prevState,
       [name]: value,
     }));
-  };
 
-  const handleAddGrade = () => {
-    axios.post('http://localhost:3001/addGrade', newGrade)
-      .then(response => {
-        setGrades(prevGrades => [...prevGrades, response.data]);
-        setIsModalOpen(false);
-        setNewGrade({
-          subject: '',
-          testType: '',
-          date: '',
-          maxMarks: 0,
-          scoredMarks: 0,
-        });
+  };
+  const handleAddGrade = () => {   
+        axios.post('http://localhost:4001/addGrade', newGrade)
+          .then(response => {
+            setGrades(prevGrades => [...prevGrades, response.data]);
+            setIsModalOpen(false);
+            setNewGrade({
+              subject: '',
+              testType: '',
+              date: '',
+              maxMarks: 0,
+              scoredMarks: 0,
+
+            
+          })
+          .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
   };
 
   return (
-    <div className="container">
-      <div className="Box1">
-        <div className='UserInfo'>
-          <img src={UserImage} alt="User" className="user-image" /> 
-          <span className="username">Gaurav Thakur</span>
-          <img src={UniImage} alt="User" className="user-image" />
-          <span className="username">Chitkra University</span>
-          <img src={degree} alt="User" className="user-image" />
-          <span className="username">Computer Science</span>
-          <img src={id} alt="User" className="user-image" />
-          <span className="username">2111981291</span>
+    <div className="Grade-container">
+      <div className="Grade-Box1">
+        <div className='Grade-UserInfo'>
+          <img src={UserImage} alt="User" className="Grade-user-image" /> 
+          <span className="Grade-username">Gaurav Thakur</span>
+          <img src={UniImage} alt="User" className="Grade-user-image" />
+          <span className="Grade-username">Chitkra University</span>
+          <img src={degree} alt="User" className="Grade-user-image" />
+          <span className="Grade-username">Computer Science</span>
+          <img src={id} alt="User" className="Grade-user-image" />
+          <span className="Grade-username">{userId}</span>
         </div>
       </div>
-      <div className="Box2">
-        <div className='Heading'>
-        <button className='Btn1' onClick={openModal}>Add</button>
-        <button className='Btn2' onClick={toggleRemoveMode}>
+      <div className="Grade-Box2">
+        <div className='Grade-Heading'>
+        <button className='Grade-Btn1' onClick={openModal}>Add</button>
+        <button className='Grade-Btn2' onClick={toggleRemoveMode}>
             {isRemoveMode ? 'Cancel ' : 'Remove '}
           </button>
           <h1>Grades Tracker</h1>          
           <div>
-          <label htmlFor="filterDropdown">Filter:</label>
+          <label htmlFor="filterDropdown" className='Grade-label'>Filter:</label>
             <select
               id="filterDropdown"
-              className="Btn2"
+              className="Grade-Btn2"
               value={selectedFilterOption}
               onChange={handleFilterChange}
             >
@@ -179,13 +202,14 @@ function GradeTracker() {
           isOpen={isFilterModalOpen} 
           onRequestClose={closeFilterModal}
           contentLabel="Filter Modal"
-          className="filter-modal" 
+          className="Grade-filter-modal" 
         >
-          <h2>Filter by {selectedFilterOption}</h2>
-          <form>
-            <div className="form-group">
-              <label htmlFor="filterValue">Enter {selectedFilterOption}:</label>
+          <h2 className='Grade-h2'>Filter by {selectedFilterOption}</h2>
+          <form className='Grade-form'>
+            <div className="Grade-form-group">
+              <label htmlFor="filterValue" className='Grade-label'>Enter {selectedFilterOption}:</label>
               <input
+              className='Grade-input'
                 type="text"
                 id="filterValue"
                 name="filterValue"
@@ -199,10 +223,10 @@ function GradeTracker() {
         </Modal>
         </div>
           <div>
-          <label htmlFor="sortDropdown">Sort:</label>
+          <label htmlFor="sortDropdown" className='Grade-label'>Sort:</label>
         <select
           id="sortDropdown"
-          className="Btn2"
+          className="Grade-Btn2"
           value={selectedSortOption}
           onChange={handleSortChange}
         >
@@ -211,14 +235,14 @@ function GradeTracker() {
           <option value="Max-Marks">Max</option>
           <option value="Scored Marks">Scored </option>
         </select>
-        <button onClick={toggleSortOrder} className='removeBtn'>{sortOrder}</button>
+        <button onClick={toggleSortOrder} className='Grade-removeBtn'>{sortOrder}</button>
         </div>
         </div>
         <hr style={{ height: '2px', border: 'none', backgroundColor: 'hsl( 196.18deg 100% 52.75% )', marginLeft: '8px', marginRight: '8px' }} />      
-        <div className='Grades'>
-          <table className='table'>
+        <div className='Grade-Grades'>
+          <table className='Grade-table'>
             <thead>
-              <tr className='Titles'>
+              <tr className='Grade-Titles'>
                 <th>Sr.No</th>
                 <th>Subject</th>
                 <th>Test-Type</th>
@@ -232,9 +256,9 @@ function GradeTracker() {
               {grades.map((grade, index) => (
                 
                 <tr key={index}>
-                  <td className='srn'> {isRemoveMode && (
+                  <td className='Grade-srn'> {isRemoveMode && (
                     
-                      <button onClick={() => handleRemoveGrade(grade._id)} className='removeBtn'>X</button>
+                      <button onClick={() => handleRemoveGrade(grade._id)} className='Grade-removeBtn'>X</button>
                     )} {index + 1}</td>
                   <td>{grade.subject}</td>
                   <td>{grade.testType}</td>
@@ -249,16 +273,18 @@ function GradeTracker() {
         </div>
         <hr style={{ height: '3px', border: 'none', backgroundColor: 'hsl( 196.18deg 100% 52.75% )', marginLeft: '8px', marginRight: '8px', }} />      
         
-          <Modal
+          <Modal className={'Grade-addModal'}
   isOpen={isModalOpen}
   onRequestClose={closeModal}
   contentLabel="Add Grade Modal"
 >
-  <h2>Add Grade</h2>
-  <form>
-    <div className="form-group">
-      <label htmlFor="subject">Subject:</label>
+  <h2 className='Grade-h2'>Add Grade</h2>
+  <form className='Grade-form'>
+    <div className="Grade-form-group">
+      <label htmlFor="subject" className='Grade-label'>Subject:</label>
       <input
+      className='Grade-input'
+
         type="text"
         id="subject"
         name="subject"
@@ -266,8 +292,8 @@ function GradeTracker() {
         onChange={handleInputChange}
       />
     </div>
-    <div className="form-group">
-      <label htmlFor="testType">Test Type:</label>
+    <div className="Grade-form-group">
+      <label htmlFor="testType" className='Grade-label'>Test Type:</label>
       <input
         type="text"
         id="testType"
@@ -276,9 +302,11 @@ function GradeTracker() {
         onChange={handleInputChange}
       />
     </div>
-    <div className="form-group">
-      <label htmlFor="date">Date:</label>
+    <div className="Grade-form-group">
+      <label htmlFor="date" className='Grade-label'>Date:</label>
       <input
+      className='Grade-input'
+
         type="date"
         id="date"
         name="date"
@@ -286,9 +314,10 @@ function GradeTracker() {
         onChange={handleInputChange}
       />
     </div>
-    <div className="form-group">
-      <label htmlFor="maxMarks">Max Marks:</label>
+    <div className="Grade-form-group">
+      <label htmlFor="maxMarks" className='Grade-label'>Max Marks:</label>
       <input
+        className='Grade-input'
         type="number"
         id="maxMarks"
         name="maxMarks"
@@ -296,9 +325,11 @@ function GradeTracker() {
         onChange={handleInputChange}
       />
     </div>
-    <div className="form-group">
-      <label htmlFor="scoredMarks">Scored Marks:</label>
+    <div className="Grade-form-group">
+      <label htmlFor="scoredMarks" className='Grade-label'>Scored Marks:</label>
       <input
+         className='Grade-input'
+
         type="number"
         id="scoredMarks"
         name="scoredMarks"
@@ -306,7 +337,7 @@ function GradeTracker() {
         onChange={handleInputChange}
       />
     </div>
-    <button type="button"  className='add' onClick={handleAddGrade}>Add Grade</button>
+    <button type="button"  className='Grade-add' onClick={handleAddGrade}>Add Grade</button>
   </form>
 </Modal>
        

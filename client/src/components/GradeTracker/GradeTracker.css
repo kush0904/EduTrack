@@ -6,7 +6,7 @@
   
 }
 
- .container {
+ .Grade-container {
   background: linear-gradient(to right, #000000, rgb(90, 89, 89));
   width: auto;
     height: auto;
@@ -14,7 +14,7 @@
     flex-direction: column;
 } 
 
-.Box1 {
+.Grade-Box1 {
   flex: 1;
   background-color: #292c2f;
   height: auto;
@@ -23,7 +23,7 @@
   border: 2px solid white; 
   border-radius: 10px; 
 }
-.Box2{
+.Grade-Box2{
   flex:7;
   background-color: #292c2f;
   height: auto;
@@ -34,20 +34,20 @@
   
 }
 
-.sr{
+.Grade-sr{
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.user-image {
+.Grade-user-image {
   object-fit: contain;
   width: 50px;
   height: 50px;
   padding: 10px;
 }
 
-.username {
+.Grade-username {
   font-family: cursive;
   font-size: larger;
   font-weight: bold;
@@ -55,14 +55,14 @@
   margin: 5px;
 }
 
-.UserInfo {
+.Grade-UserInfo {
   display: flex;
   align-items: center;
   justify-content: space-evenly; 
    margin: 3px;
 }
 
-.Heading {
+.Grade-Heading {
   color: #f1f1f1;
 font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
@@ -72,17 +72,17 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   align-items: center;
 
 }
-.Grades{
+.Grade-Grades{
   display: flex;
 }
-.table {
+.Grade-table {
   width: 100%;
   border-collapse: collapse;
   margin:10px;
 
 }
 
-.table td, .table th {
+.Grade-table td, .Grade-table th {
   
   border: 1px solid rgb(255, 255, 255);
   padding: 8px;
@@ -91,25 +91,25 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  color: white;
   
 }
-.table th{
+.Grade-table th{
   font-family: cursive;
   font-weight: bold;
   font-size: large;
 
 }
-.table td{
+.Grade-table td{
   font-family: cursive;
   font-style: italic;
 }
-.Titles{
+.Grade-Titles{
 background-color:rgba(119, 136, 153, 0.734);
 
 }
-.sortDropdown{
+.Grade-sortDropdown{
   width: auto !important;
 }
 
-.Btn1 {
+.Grade-Btn1 {
   font-size: 16px;
   border-radius: 20px;
   border: 3px solid rgb(64, 190, 41);
@@ -124,12 +124,12 @@ background-color:rgba(119, 136, 153, 0.734);
 
 
 }
-.Btn1:hover {
+.Grade-Btn1:hover {
   background-color: rgb(64, 190, 41);
   color: black;
 }
 
-.Btn2 {
+.Grade-Btn2 {
   font-size: 16px;
   border-radius: 20px;
   border: 3px solid rgb(64, 190, 41);
@@ -144,7 +144,7 @@ background-color:rgba(119, 136, 153, 0.734);
  
   
 }
-.Btn2:hover {
+.Grade-Btn2:hover {
   background-color: rgb(64, 190, 41);
   color: black;
 
@@ -156,44 +156,53 @@ background-color:rgba(119, 136, 153, 0.734);
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  right: 50%;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  background: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.Grade-addModal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 50%;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); 
+ 
 
+}
 .ReactModal__Content {
   position: relative;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
-  background: #fff; /* White background */
+  background: #000000; 
   padding: 20px;
   max-width: 400px;
   width: 100%;
 }
 
-h2 {
+.Grade-h2 {
   font-size: 1.5rem;
   margin-bottom: 20px;
 }
 
-form {
+.Grade-form {
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
+.Grade-form-group {
   margin-bottom: 20px;
 }
 
-label {
+.Grade-label {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-input {
+.Grade-input {
   width: 100%;
   padding: 10px;
   font-size: 1rem;
@@ -202,7 +211,7 @@ input {
   margin-top: 5px;
 }
 
-.add {
+.Grade-add {
   background-color: #007bff; /* Blue color for the button */
   color: #fff; /* White text */
   padding: 12px;
@@ -213,13 +222,13 @@ input {
   align-items: center;
 }
 
-.add:hover {
+.Grade-add:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
 
 
 
-.removeBtn{
+.Grade-removeBtn{
   background-color: #dc3545;
   color: #fff;
   border: black;
