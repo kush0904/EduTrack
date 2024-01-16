@@ -9,7 +9,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import { Box } from '@mui/material';
 import Header from '../Global/Header';
-
+import userId from './userIdStore';
 function GradeTracker() {
   const [grades, setGrades] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,7 +23,15 @@ function GradeTracker() {
   const [isRemoveMode, setIsRemoveMode] = useState(false);
   const [selectedSortOption, setSelectedSortOption] = useState('Subject');
   const [sortOrder, setSortOrder] = useState('ASC');
-  const handleSortChange = (event) => {
+
+  const fetchGrades = () => {
+    axios.get('http://localhost:4001/getGrades')
+      .then(response => {
+        setGrades(response.data);
+      })
+      .catch(err => console.log(err));
+  };
+    const handleSortChange = (event) => { 
     const selectedOption = event.target.value;
     setSelectedSortOption(selectedOption);
     sortGrades(selectedOption, sortOrder);
@@ -33,19 +41,23 @@ function GradeTracker() {
     const newSortOrder = sortOrder === 'ASC' ? 'DSC' : 'ASC';
     setSortOrder(newSortOrder);
     sortGrades(selectedSortOption, newSortOrder);
+    fetchGrades();  
+
   };
 
   const sortGrades = (selectedOption, currentSortOrder) => {
     axios.post('http://localhost:4001/sortGrades', { selectedOption, currentSortOrder })
       .then(response => {
         setGrades(response.data);
-      })
+      }) 
       .catch(err => console.log(err));
-  };
 
-  useEffect(() => {
+  }; 
+
+  useEffect(() => { 
     sortGrades(selectedSortOption, sortOrder);
-  }, [selectedSortOption, sortOrder]);
+    fetchGrades();  
+  }, [selectedSortOption, sortOrder]);  
 
   const [selectedFilterOption, setSelectedFilterOption] = useState('None');
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -66,11 +78,14 @@ function GradeTracker() {
         })
         .catch(err => console.log(err));
     }
+      
+
   };
 
   const closeFilterModal = () => {
     setIsFilterModalOpen(false);
     setFilterValue(''); 
+
   };
 
   
@@ -88,16 +103,24 @@ function GradeTracker() {
     }
   
     closeFilterModal();
+    fetchGrades();  
+
   };
   const openModal = () => {
     setIsModalOpen(true);
+    fetchGrades();  
+
   };
  
   const closeModal = () => {
     setIsModalOpen(false);
+    fetchGrades();  
+
   };
   const toggleRemoveMode = () => {
     setIsRemoveMode(!isRemoveMode);
+    fetchGrades();  
+
   };
 
   const handleRemoveGrade = (id) => {
@@ -107,6 +130,7 @@ function GradeTracker() {
         setGrades(prevGrades => prevGrades.filter(grade => grade._id !== id));
       })
       .catch(err => console.log(err));
+
   };
 
 
@@ -123,6 +147,7 @@ function GradeTracker() {
       ...prevState,
       [name]: value,
     }));
+
   };
   const handleAddGrade = () => {   
         axios.post('http://localhost:4001/addGrade', newGrade)
