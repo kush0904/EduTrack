@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { NavLink,useNavigate } from 'react-router-dom';
 import './login.css';
-const  Login =()=>{
 
+const Login =()=>{
     const navigate=useNavigate();
 
     const [email, setEmail]=useState('');
@@ -34,7 +34,7 @@ const  Login =()=>{
     return(
         <>
         <section className="signup">
-            <div className="container"><h2 className="title">
+            <div className="logincontainer"><h2 className="title">
                             login
                         </h2>
                 <div className="signup-content">
