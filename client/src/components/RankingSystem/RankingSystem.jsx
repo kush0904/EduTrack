@@ -1,9 +1,11 @@
 // RankingSystem.jsx
 import React, { useState, useEffect } from "react";
 import { Button, Table, Dropdown, DropdownButton } from 'react-bootstrap';
+import ScoreChart from './ScoreChart';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./RankingSystem.css"; 
 import SearchBar from './SearchBar';
+import Chart from 'chart.js/auto';
 
 const RankingSystem = () => {
   
@@ -63,6 +65,7 @@ const RankingSystem = () => {
       setSearchResults(term);
     };
     
+
     return (
       <div className="container mt-4">
         <h1 className="text-center mb-4">Ranking System</h1>
@@ -122,8 +125,12 @@ const RankingSystem = () => {
             ))}
           </tbody>
         </Table>
-  
+              
         <Button variant="primary" onClick={()=>{setShowAllRankings(true)}}>See All</Button>
+
+
+        <br/>
+        <ScoreChart rankings={displayedRankings}/>
       </div>
     );
   };
