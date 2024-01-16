@@ -1,0 +1,256 @@
+
+  
+.addGoalsButton {
+    background-color: rgb(23, 93, 43);  /* Set your default button color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  .bannerDiv{
+    margin-top: 50px;
+    margin-bottom: 120px;
+  }
+  .card-equal-height {
+    height: 100%; /* or any other value you prefer */
+  }
+  
+  .addGoalsButton:hover {
+    background-color: rgb(9, 48, 9);  /* Set your button color on hover */
+    border-radius: 0;
+    transition: ease 1s;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); /* Add box-shadow on hover */
+    /* transform: translateY(-2px); Move the button slightly up on hover */
+    animation: glow 1s infinite alternate; /* Add the glowing effect */
+  }
+  @keyframes glow {
+    to {
+      box-shadow: 0 0 7px #161617, 0 0 15px #1c1f22, 0 0 20px #1a1e22;
+    }
+  }
+  
+  .whySetGoalsIcons{
+    fill: green;
+  }
+  .whySetGoalsIcons:hover {
+    fill: darkgreen; /* Change the hover color to a darker shade of green, if desired */
+  }
+
+
+
+
+  /********************* goalsList CSS 
+  **************************/
+
+  /* {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  } */
+  
+  /* body {
+    background-color: #252525;
+    color: #fff;
+  } */
+
+  
+  
+  
+   
+  
+    .goalAddedPopup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .goalAddedPopup.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  .title {
+    text-align: center;
+    font-size: 3rem;
+  }
+  
+  .input_holder {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  input,
+  button {
+    padding: 10px 20px;
+    background-color: #5a5454;
+    color: #212020;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    /* background-color: #4CAF50; */
+    color: rgb(30, 17, 17);
+    border: none;
+    cursor: pointer;
+  }
+  
+  input {
+    width: 200px;
+  }
+  
+  input::placeholder {
+    color: #080707;
+  }
+  
+  button:hover {
+    cursor: pointer;
+    background-color: #3dac5d;
+  }
+
+  .list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .toDo {
+    background-color: #d1caca;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .icon:hover {
+    cursor: pointer;
+    color: #cfcfcf;
+  }
+  
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #0000006c;
+    display: grid;
+    place-items: center;
+  }
+  
+  .popup {
+    position: relative;
+    background-color: #2b2727;
+    width: 400px;
+    padding: 10px;
+  }
+  
+  .cross {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .cross:hover {
+    color: #c4c4c4;
+  }
+  
+  .popup h1 {
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .popup__input_holder {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: 30px;
+  }
+  
+  .popup__input_holder input,
+  .popup__input_holder button {
+    background-color: #050404;
+    color: #000;
+  }
+  
+  .popup__input_holder input::placeholder {
+    color: #503232;
+  }
+  
+  .popup__input_holder button:hover {
+    background-color: #4f4b4b;
+  }
+  
+
+  
+  
+.goalTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.goalTable th, .goalTable td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.goalTable th {
+  background-color: #03843d; /* Header background color */
+  color: #fff;
+}
+
+.goalTable td {
+  background-color: #d1caca; /* Row background color */
+}
+
+.goalTable td:nth-child(odd) {
+  background-color: #e6e6e6; /* Alternate row background color */
+}
+
+.goalTable button {
+  padding: 8px 12px;
+  margin: 4px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+}
+
+.goalTable .editButton,
+.goalTable th button {
+  background-color: #128332; /* Edit button color */
+  color: #fff;
+}
+
+.goalTable .editButton:hover,
+.goalTable th button:hover {
+  background-color: #0a5628; /* Edit button color on hover */
+}
+
+.goalTable .deleteButton {
+  background-color: #cc0000; /* Delete button color */
+  color: #fff;
+}
+
+.goalTable .deleteButton:hover {
+  background-color: #870000; /* Delete button color on hover */
+}
