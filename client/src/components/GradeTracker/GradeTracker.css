@@ -6,63 +6,67 @@
   
 }
 
- .container {
-  background: linear-gradient(to right, #000000, rgb(90, 89, 89));
+ .Grade-container {
   width: auto;
     height: auto;
     display: flex;
     flex-direction: column;
 } 
 
-.Box1 {
+.Grade-Box1 {
   flex: 1;
-  background-color: #292c2f;
   height: auto;
   width: auto;
   margin: 15px  15px 7px 15px;
-  border: 2px solid white; 
+  border:1px solid rgb(102, 71, 255);
   border-radius: 10px; 
+  box-shadow: 0 0 50px rgba(128, 0, 128, 9);
+
 }
-.Box2{
+.Grade-Box2{
   flex:7;
-  background-color: #292c2f;
+  background-color: black;
   height: auto;
   width: auto;
-  margin: 0 15px 15px 15px;
-  border: 2px solid white; 
+  margin: 23px 15px 15px 15px;
   border-radius: 10px; 
   
 }
 
-.sr{
+.Grade-sr{
+  border-bottom: 2px solid rgb(102, 71, 255);
+}
+
+.Grade-srn{
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.user-image {
+.Grade-user-image {
   object-fit: contain;
   width: 50px;
   height: 50px;
   padding: 10px;
 }
 
-.username {
-  font-family: cursive;
+.Grade-username {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: larger;
   font-weight: bold;
   color: white;
   margin: 5px;
 }
 
-.UserInfo {
+
+.Grade-UserInfo {
   display: flex;
   align-items: center;
   justify-content: space-evenly; 
    margin: 3px;
 }
 
-.Heading {
+.Grade-Heading {
   color: #f1f1f1;
 font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
@@ -72,17 +76,18 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   align-items: center;
 
 }
-.Grades{
+.Grade-Grades{
+  margin: 2px;
   display: flex;
 }
-.table {
+.Grade-table {
   width: 100%;
   border-collapse: collapse;
   margin:10px;
 
 }
 
-.table td, .table th {
+.Grade-table td, .Grade-table th {
   
   border: 1px solid rgb(255, 255, 255);
   padding: 8px;
@@ -91,25 +96,30 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  color: white;
   
 }
-.table th{
-  font-family: cursive;
+.Grade-table th{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
   font-size: large;
+  height: auto;
+  width: auto;
+  margin: 15px  15px 7px 15px;
+  border:3px solid rgb(102, 71, 255);
+  border-radius: 10px; 
+  box-shadow: 0 0 30px rgba(128, 0, 128, 9);
 
 }
-.table td{
-  font-family: cursive;
+.Grade-table td{
+  font-family:'Times New Roman', Times, serif;
   font-style: italic;
 }
-.Titles{
-background-color:rgba(119, 136, 153, 0.734);
+.Grade-Titles{
 
 }
-.sortDropdown{
+.Grade-sortDropdown{
   width: auto !important;
 }
 
-.Btn1 {
+.Grade-Btn1 {
   font-size: 16px;
   border-radius: 20px;
   border: 3px solid rgb(64, 190, 41);
@@ -124,12 +134,64 @@ background-color:rgba(119, 136, 153, 0.734);
 
 
 }
-.Btn1:hover {
+
+/* CSS */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: black;
+  border-radius: 4px;
+  border-width: 0;
+  border:2px solid white;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(128, 0, 128, 9) 0 3px 0;
+  transform: translateY(-2px);
+  border: 3px solid white;
+  -webkit-transform: translateY(-2px);
+  -moz-transform: translateY(-2px);
+  -ms-transform: translateY(-2px);
+  -o-transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+.Grade-Btn1:hover {
   background-color: rgb(64, 190, 41);
   color: black;
 }
 
-.Btn2 {
+.Grade-Btn2 {
   font-size: 16px;
   border-radius: 20px;
   border: 3px solid rgb(64, 190, 41);
@@ -144,7 +206,7 @@ background-color:rgba(119, 136, 153, 0.734);
  
   
 }
-.Btn2:hover {
+.Grade-Btn2:hover {
   background-color: rgb(64, 190, 41);
   color: black;
 
@@ -156,53 +218,61 @@ background-color:rgba(119, 136, 153, 0.734);
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  right: 50%;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  background: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.Grade-addModal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 50%;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); 
+ 
 
+}
 .ReactModal__Content {
   position: relative;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
-  background: #fff; /* White background */
+  background: #000000; 
   padding: 20px;
   max-width: 400px;
   width: 100%;
 }
 
-h2 {
+.Grade-h2 {
   font-size: 1.5rem;
   margin-bottom: 20px;
 }
 
-form {
+.Grade-form {
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
+.Grade-form-group {
   margin-bottom: 20px;
 }
 
-label {
+.Grade-label {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-input {
+.Grade-input {
   width: 100%;
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ccc;
   border-radius: 4px;
   margin-top: 5px;
 }
 
-.add {
+.Grade-add {
   background-color: #007bff; /* Blue color for the button */
   color: #fff; /* White text */
   padding: 12px;
@@ -213,13 +283,13 @@ input {
   align-items: center;
 }
 
-.add:hover {
+.Grade-add:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
 
 
 
-.removeBtn{
+.Grade-removeBtn{
   background-color: #dc3545;
   color: #fff;
   border: black;
@@ -227,5 +297,5 @@ input {
   cursor: pointer;
   height: auto;
   width: auto;
-  margin-right: 3px;
+  margin-right: 3px;
 }

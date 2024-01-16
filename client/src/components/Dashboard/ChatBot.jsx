@@ -20,7 +20,7 @@ const ChatBot = () => {
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 0 50px rgba(128, 0, 128, 9);
+            box-shadow: 0 0 70px rgba(128, 0, 128, 9);
           }
 
           @media only screen and (max-width: 600px) {
@@ -36,14 +36,14 @@ const ChatBot = () => {
               justify-content: center;
               align-items: center;
               text-align: center;
-              box-shadow: 0 0 50px rgba(128, 0, 128, 9); 
+              box-shadow: 0 0 80px rgba(128, 0, 128, 9); 
             }
           }
         `}
       </style>
 
       <div className="absolute inset-4">
-        <div className="center-div relative h-full w-full overflow-clip rounded-md border border-zinc-200 bg-white px-0 py-0">
+        <div className="center-div relative h-full w-full overflow-clip rounded-md px-8 py-0">
           <iframe
             style={{ border: 'none' }}
             srcDoc={`<body><script src='https://cdn.botpress.cloud/webchat/v0/inject.js'></script>
@@ -51,9 +51,8 @@ const ChatBot = () => {
               window.botpressWebChat.init({
                 'composerPlaceholder': 'Chat with bot',
                 'botConversationDescription': 'The Conversational Genius',
-                'botName': 'EduSphere',
+                'botName': 'EchoSphere',
                 'botId': 'aa77449c-c123-4ca5-aa26-45e57964f414',
-                useSessionStorage: true,
                 'hostUrl': 'https://cdn.botpress.cloud/webchat/v0',
                 'messagingUrl': 'https://messaging.botpress.cloud',
                 'clientId': 'aa77449c-c123-4ca5-aa26-45e57964f414',
@@ -63,14 +62,10 @@ const ChatBot = () => {
                 'containerWidth': '100%25',
                 'layoutWidth': '100%25',
                 'hideWidget': true,
-                "lazySocket": true,
-                "frontendVersion": "v1",
                 'showCloseButton': false,
-                "webhookId": "668fcf8b-1f8e-49e9-a8ec-7e7dd27be126",
                 'disableAnimations': false,
                 'closeOnEscape': false,
                 'showConversationsButton': true,
-                "useSessionStorage": true,
                 'enableTranscriptDownload': true,
                 'stylesheet':'https://webchat-styler-css.botpress.app/prod/code/3fcd3e4e-d5bc-4bf5-8699-14b621b3ada2/v31782/style.css'
               });
