@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./RankingSystem.css"; 
 import SearchBar from './SearchBar';
 import Chart from 'chart.js/auto';
+import Header from "../Global/Header";
 
 const RankingSystem = () => {
   
@@ -37,7 +38,8 @@ const RankingSystem = () => {
       const filteredRankings = originalRankings.filter(
         (student) =>
           student.studentName.toLowerCase().includes(searchResults.toLowerCase()) ||
-          student.class.toLowerCase().includes(searchResults.toLowerCase())
+          student.class.toLowerCase().includes(searchResults.toLowerCase()) ||
+          student.roll_no.toString().includes(searchResults)
       );
       setShowAllRankings(false); // Reset to show limited ranks
       setRankings(filteredRankings);
@@ -67,17 +69,19 @@ const RankingSystem = () => {
     
 
     return (
-      <div className="container mt-4">
-        <h1 className="text-center mb-4">Ranking System</h1>
+<div className="container mt-4" style={{ overflow: "auto", height: "80vh" }}>
+      <Header title="Student Performance Rankings" subtitle="" />
 
         <div className="d-flex justify-content-between mb-3">
-          <DropdownButton title={`Ranking by ${selectedCategory}`} variant="secondary">
-            <Dropdown.Item onClick={() => setSelectedCategory("score")}>Score</Dropdown.Item>
-            <Dropdown.Item onClick={() => setSelectedCategory("attendance")}>Attendance</Dropdown.Item>
-            <Dropdown.Item onClick={() => setSelectedCategory("behavior")}>Behavior</Dropdown.Item>
-            <Dropdown.Item onClick={() => setSelectedCategory("extracurricular")}>Extracurricular</Dropdown.Item>
-            <Dropdown.Item onClick={() => setSelectedCategory("homework")}>Homework Completion</Dropdown.Item>
-          </DropdownButton>
+        
+        <DropdownButton title={`Ranking by ${selectedCategory}`} variant="secondary">
+  <Dropdown.Item onClick={() => setSelectedCategory("score")}>Score</Dropdown.Item>
+  <Dropdown.Item onClick={() => setSelectedCategory("attendance")}>Attendance</Dropdown.Item>
+  <Dropdown.Item onClick={() => setSelectedCategory("behavior")}>Behavior</Dropdown.Item>
+  <Dropdown.Item onClick={() => setSelectedCategory("extracurricular")}>Extracurricular</Dropdown.Item>
+  <Dropdown.Item onClick={() => setSelectedCategory("homework")}>Homework Completion</Dropdown.Item>
+</DropdownButton>
+
   
           <DropdownButton title={`Show ${visibleRanks} Ranks`} variant="secondary">
             <Dropdown.Item onClick={() => handleVisibleRanksChange(5)}>5 Ranks</Dropdown.Item>
@@ -94,7 +98,7 @@ const RankingSystem = () => {
         </div>
   
         <SearchBar onSearch={handleSearch} />
-
+        <br />
         <Table striped bordered hover responsive>
           <thead>
             <tr>
