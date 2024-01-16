@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './login.css';
-const  Login =()=>{
 
+const Login =()=>{
     return(
         <>
         <section className="signup">

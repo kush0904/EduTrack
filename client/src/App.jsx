@@ -33,6 +33,8 @@ function App() {
                 <Route path="/UserForm" element={<UserForm />} />
                 <Route path="/MarksForm" element={<MarksForm />} />
                 <Route path="/team" element={<Team />} />
+                <Route path="/Login" element={<Login />} />
+
                 {/* Add other routes here */}
               </Routes>
             </main>
