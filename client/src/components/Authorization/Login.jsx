@@ -1,5 +1,35 @@
-import { NavLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import { NavLink,useNavigate } from 'react-router-dom';
 import './login.css';
+const  Login =()=>{
+
+    const navigate=useNavigate();
+
+    const [email, setEmail]=useState('');
+    const [password, setPassword]=useState('');
+
+    const loginUser = async(e)=>{
+        e.preventDefault();
+
+        const res = await fetch('http://localhost:5000/login', {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+                email, password
+            })
+        });
+
+        const data=res.json();
+
+        if(res.status ===400 || !data){
+            window.alert("Invalid Credentials");
+        }else{
+            window.alert("Login Successfull");
+            navigate("/")
+        }
+    }
 
 const Login =()=>{
     return(
@@ -16,21 +46,29 @@ const Login =()=>{
                         </div>
                     <div className="signup-form">
                         
-                        <form className="regis-form" id="regis-form">
+                        <form method="POST" className="regis-form" id="regis-form">
 
                             <div className="form-group">
                                 <label htmlFor="email"></label>
-                                <input type="email" name="email" id="email" placeholder='Your Email'/>
+                                <input type="email" name="email" id="email" 
+                                value={email}
+                                onChange={(e)=>setEmail(e.target.value)}
+                                placeholder='Your Email'/>
                             </div>
 
 
                             <div className="form-group">
                                 <label htmlFor="password"></label>
-                                <input type="password" name="password" id="password" placeholder='Your Password'/>
+                                <input type="password" name="password" id="password" 
+                                value={password}
+                                onChange={(e)=>setPassword(e.target.value)}
+                                placeholder='Your Password'/>
                             </div>
 
                             <div className="button">
-                                <input type="submit" name="signup" id="signup" className='form-submit' value="login"  />
+                                <input type="submit" name="signin" id="signup" className='form-submit' 
+                                onClick={loginUser}
+                                value="login"  />
                             </div>
                         </form>
                         </div>
