@@ -20,10 +20,31 @@ function GradeTracker() {
     maxMarks: 0,
     scoredMarks: 0,
   });
+
   const [isRemoveMode, setIsRemoveMode] = useState(false);
   const [selectedSortOption, setSelectedSortOption] = useState('Subject');
   const [sortOrder, setSortOrder] = useState('ASC');
-  const handleSortChange = (event) => {
+  const [uid, setUid] = useState(0); 
+  const [Name,setname]=useState("No one Logged In");
+  const fetchGrades = () => {
+    axios.get('http://localhost:4001/getGrades')
+      .then(response => {
+        setGrades(response.data);
+        setUid(response.data[0].clg_id);
+        setname(response.data[0].Name);
+
+        })
+      .catch(err => console.log(err));
+  };
+
+console.log(Name);
+ 
+useEffect(() => {
+  fetchGrades(); 
+}, []); 
+console.log(uid);
+console.log(Name);
+    const handleSortChange = (event) => {  
     const selectedOption = event.target.value;
     setSelectedSortOption(selectedOption);
     sortGrades(selectedOption, sortOrder);
@@ -39,13 +60,14 @@ function GradeTracker() {
     axios.post('http://localhost:4001/sortGrades', { selectedOption, currentSortOrder })
       .then(response => {
         setGrades(response.data);
-      })
+      }) 
       .catch(err => console.log(err));
-  };
 
-  useEffect(() => {
+  }; 
+
+  useEffect(() => { 
     sortGrades(selectedSortOption, sortOrder);
-  }, [selectedSortOption, sortOrder]);
+  }, [selectedSortOption, sortOrder]);  
 
   const [selectedFilterOption, setSelectedFilterOption] = useState('None');
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -66,11 +88,14 @@ function GradeTracker() {
         })
         .catch(err => console.log(err));
     }
+      
+
   };
 
   const closeFilterModal = () => {
     setIsFilterModalOpen(false);
     setFilterValue(''); 
+ 
   };
 
   
@@ -79,7 +104,7 @@ function GradeTracker() {
       axios.post('http://localhost:4001/filterGrades', {
         filterOption: selectedFilterOption,
         filterValue: filterValue,
-      })
+      }) 
         .then(response => {
           console.log('Filtered data from server:', response.data);
           setGrades(response.data);
@@ -88,16 +113,20 @@ function GradeTracker() {
     }
   
     closeFilterModal();
+
   };
   const openModal = () => {
     setIsModalOpen(true);
+
   };
  
   const closeModal = () => {
     setIsModalOpen(false);
+
   };
   const toggleRemoveMode = () => {
     setIsRemoveMode(!isRemoveMode);
+
   };
 
   const handleRemoveGrade = (id) => {
@@ -107,6 +136,7 @@ function GradeTracker() {
         setGrades(prevGrades => prevGrades.filter(grade => grade._id !== id));
       })
       .catch(err => console.log(err));
+
   };
 
 
@@ -123,6 +153,7 @@ function GradeTracker() {
       ...prevState,
       [name]: value,
     }));
+
   };
   const handleAddGrade = () => {   
         axios.post('http://localhost:4001/addGrade', newGrade)
@@ -144,19 +175,20 @@ function GradeTracker() {
   };
 
   return (
+    
     <Box m="20px">
     <Header title = "Grades Tracker" subtitle="Look!! Where you stand" />
     <div className="Grade-container">
       <div className="Grade-Box1">
         <div className='Grade-UserInfo'>
           <img src={UserImage} alt="User" className="Grade-user-image" /> 
-          <span className="Grade-username">Gaurav Thakur</span>
+          <span className="Grade-username">{Name} </span>
           <img src={UniImage} alt="User" className="Grade-user-image" />
           <span className="Grade-username">Chitkra University</span>
           <img src={degree} alt="User" className="Grade-user-image" />
           <span className="Grade-username">Computer Science</span>
           <img src={id} alt="User" className="Grade-user-image" />
-          <span className="Grade-username">2111981291</span>
+          <span className="Grade-username">{uid}</span>
         </div>
       </div>
       <div className="Grade-Box2">
@@ -333,4 +365,4 @@ function GradeTracker() {
   );
 }
 
-export default GradeTracker;
+export default GradeTracker;

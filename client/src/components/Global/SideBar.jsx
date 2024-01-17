@@ -41,11 +41,14 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const Sidebars = () => {
+const Sidebars = ({ userName }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+
+  console.log(userName);
+
 
   return (
     <Box
@@ -99,13 +102,7 @@ const Sidebars = () => {
           {!isCollapsed && (
             <Box mb="20px" pt="25px" >
               <Box display="flex" justifyContent="center" alignItems="center" >
-                {/* <img
-                  alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`/assets/john-wick-wallpaper.jpg`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                /> */}
+
               </Box>
               <Box textAlign="left" display = "flex" justifyContent="left" marginLeft={"20%"}>
                 <Typography
@@ -115,9 +112,9 @@ const Sidebars = () => {
                   sx={{ m: "7px 0 6px 0" }}
                   backgroundColor=""
                 >
-                  Kush
-                  {/* {username} */}
-                </Typography>
+                  
+                  {userName}
+                                  </Typography>
               </Box>
             </Box>
           )}
@@ -130,7 +127,6 @@ const Sidebars = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h6"
               color={colors.grey[300]}
