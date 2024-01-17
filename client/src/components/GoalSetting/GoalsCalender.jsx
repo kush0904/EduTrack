@@ -41,7 +41,7 @@ const GoalsCalendar = () => {
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+    <Container className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
       <Card style={{ width: '400px', padding: '20px' }}>
         <h2 className="text-center">Goals Calendar up to date</h2>
         <Calendar

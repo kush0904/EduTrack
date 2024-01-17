@@ -172,18 +172,7 @@ function GradeTracker() {
     <Box m="20px">
     <Header title = "Grades Tracker" subtitle="Look!! Where you stand" />
     <div className="Grade-container">
-      <div className="Grade-Box1">
-        <div className='Grade-UserInfo'>
-          <img src={UserImage} alt="User" className="Grade-user-image" /> 
-          <span className="Grade-username">Gaurav Thakur</span>
-          <img src={UniImage} alt="User" className="Grade-user-image" />
-          <span className="Grade-username">Chitkra University</span>
-          <img src={degree} alt="User" className="Grade-user-image" />
-          <span className="Grade-username">Computer Science</span>
-          <img src={id} alt="User" className="Grade-user-image" />
-          <span className="Grade-username">2111981291</span>
-        </div>
-      </div>
+
       <div className="Grade-Box2">
         <div className='Grade-Heading'>
         <button className='button-30' onClick={openModal}>Add Data</button>
