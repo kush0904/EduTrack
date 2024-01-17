@@ -84,6 +84,7 @@ function App() {
                 <Route path="/GoalSetting" element={<GoalSetting userName={userName} userId={userId}/>} />
                 <Route path="/GoalsList" element={<GoalsList userName={userName} userId={userId}/>} />
                 <Route path="/goalsCalender" element={<GoalsCalendar userName={userName} userId={userId} />} />
+
               </Routes>
             </main>
           </div>
