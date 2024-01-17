@@ -2,33 +2,38 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './login.css';
 
-const Login = ({ setLoggedIn }) => {
-    const navigate = useNavigate();
+const Login = ({ setLoggedIn, setUserName }) => {
+  const navigate = useNavigate();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const loginUser = async (e) => {
-        e.preventDefault();
+  const loginUser = async (e) => {
+    e.preventDefault();
 
-        const res = await fetch('http://localhost:5000/login', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ email, password })
-        });
+    const res = await fetch('http://localhost:5000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-        const data = await res.json(); // Add await here
+    const data = await res.json();
 
-        if (res.status === 400 || !data) {
-            window.alert("Invalid Credentials");
-        } else {
-            window.alert("Login Successful");
-            setLoggedIn(true);
-            navigate("/DashBoard"); // Redirect to /DashBoard upon successful login
-        }
-    };
+    if (res.status === 400 || !data) {
+      window.alert('Invalid Credentials');
+    } else {
+      window.alert('Login Successful');
+      setLoggedIn(true);
+
+      const { nm: name, userId } = data;
+
+      setUserName(name);
+
+      navigate('/DashBoard');
+    }
+  };
 
     return (
         <div className='p-4 background-radial-gradient overflow-hidden' style={{ marginTop:"20vh"}}>

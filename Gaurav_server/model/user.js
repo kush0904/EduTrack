@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   Date: String,
   scoredMarks: Number,
   percentage: Number,
+  Name:String,
   clg_id:String,
 });
 

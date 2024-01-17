@@ -47,6 +47,9 @@ const Sidebars = ({ userName }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
+  console.log(userName);
+
+
   return (
     <Box
       sx={{
@@ -109,9 +112,9 @@ const Sidebars = ({ userName }) => {
                   sx={{ m: "7px 0 6px 0" }}
                   backgroundColor=""
                 >
-
+                  
                   {userName}
-                </Typography>
+                                  </Typography>
               </Box>
             </Box>
           )}
@@ -124,7 +127,6 @@ const Sidebars = ({ userName }) => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h6"
               color={colors.grey[300]}

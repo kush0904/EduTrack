@@ -22,14 +22,14 @@ router.post("/register",(req,res)=>{
     }
 
     User.findOne({email: email})
-    .then((userExist)=>{
-        if(userExist){
+    .then((userExist)=>{    
+        if(userExist){    
             return res.status(422).json({error: "Email already exist"})
-        }
+        } 
 
         const user=new User({name , id, email, phone, password});
-
-        //bcrypt password
+     
+        //bcrypt password    
         user.save().then(()=>{
             res.status(201).json({message:"user registered successfuly" });
         }).catch((err)=> res.status(500).json({error: "failed to registered"}));
@@ -42,10 +42,10 @@ router.post("/register",(req,res)=>{
 router.post('/login', async (req, res) => {
     try {
         let token;
-        const { email, password } = req.body; 
+        const { email, password } = req.body;
 
         if (!email || !password) {
-            return res.status(400).json({ error: "Pls fill the required field" });
+            return res.status(400).json({ error: "Please fill in the required fields" });
         }
 
         const userLogin = await User.findOne({ email: email });
@@ -55,26 +55,25 @@ router.post('/login', async (req, res) => {
 
             token = await userLogin.generateAuthToken();
             const userId = userLogin.id;
+            const nm = userLogin.name;
 
+            res.cookie("jwtoken", token, {
+                expires: new Date(Date.now() + 25892000000),
+                httpOnly: true
+            });
             try {
-                await axios.post('http://localhost:4001/api/saveUserId', { userId });
+                await axios.post('http://localhost:4001/api/saveUserId', { userId,nm });
                 console.log('UserId saved successfully');
                 console.log(userId);
 
             } catch (error) {
                 console.error('Error saving userId:', error.message);
             }
-            
-
-            res.cookie("jwtoken", token, {
-                expires: new Date(Date.now() + 25892000000),
-                httpOnly: true
-            });
-
+   
             if (!isMatch) {
                 res.status(400).json({ error: "Invalid Credentials" });
             } else {
-                res.json({ message: "user signed in successfully", userId, token });
+                res.json({ message: "user signed in successfully", userId, token, nm });
             }
         } else {
             res.status(400).json({ error: "Invalid Credentials" });
@@ -87,4 +86,3 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
-module.exports=router;
