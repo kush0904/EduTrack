@@ -9,14 +9,15 @@ import Chart from 'chart.js/auto';
 import Header from "../Global/Header";
 import LoggedInStudentInfo from './LoggedInStudentInfo';
 
-const RankingSystem = () => {
+const RankingSystem = ({userName , userId}) => {
   
     const [originalRankings, setOriginalRankings] = useState([]); // Maintain original data
     const [rankings, setRankings] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("score"); 
+    const [selectedCategory, setSelectedCategory] = useState("percentage"); 
     const [showAllRankings, setShowAllRankings] = useState(false);
     const [visibleRanks, setVisibleRanks] = useState(5);
-    const [selectedClass, setSelectedClass] = useState("All");
+    const [selectedSub, setselectedSub] = useState("All");
+    const [selectedType, setselectedType] = useState("All");
     const [searchResults, setSearchResults] = useState("");
 
     useEffect(() => {
@@ -38,9 +39,8 @@ const RankingSystem = () => {
       // Filter rankings based on search term
       const filteredRankings = originalRankings.filter(
         (student) =>
-          student.studentName.toLowerCase().includes(searchResults.toLowerCase()) ||
-          student.class.toLowerCase().includes(searchResults.toLowerCase()) ||
-          student.roll_no.toString().includes(searchResults)
+          student.Name.toLowerCase().includes(searchResults.toLowerCase()) ||
+          student.clg_id.includes(searchResults.toLowerCase())
       );
       setShowAllRankings(false); // Reset to show limited ranks
       setRankings(filteredRankings);
@@ -48,15 +48,23 @@ const RankingSystem = () => {
 
     const sortedRankings = rankings.sort((a, b) => b[selectedCategory] - a[selectedCategory]);
 
-    const filteredRankings = selectedClass === "All"
+    const typeFilter = selectedSub === "All"
     ? sortedRankings
-    : sortedRankings.filter(student => student.class === selectedClass);
+    : sortedRankings.filter(student => student.subject === selectedSub);
+    
+    const filteredRankings = selectedType === "All" ? typeFilter 
+    : typeFilter.filter(student => student.testType === selectedType);
 
-    const handleClassFilter = (selectedClass) => {
-      setSelectedClass(selectedClass);
+    const handleSubFilter = (selectedSub) => {
+      setselectedSub(selectedSub);
       setShowAllRankings(false); 
     };
   
+    const handleTypeFilter = (selectedType) => {
+      setselectedType(selectedType);
+      setShowAllRankings(false); 
+    };
+
     const handleVisibleRanksChange = (value) => {
       setVisibleRanks(value);
       setShowAllRankings(false); 
@@ -68,12 +76,13 @@ const RankingSystem = () => {
       setSearchResults(term);
     };
     
-    const loggedInStudentId=108;
+    const loggedInStudentId="GHI101";
     // Find the logged-in student
-  const loggedInStudent = originalRankings.find((student) => student.roll_no === loggedInStudentId);
+  const loggedInStudent = originalRankings.find((student) => student.clg_id === loggedInStudentId);
 
   // Calculate rank or performance of the logged-in student
   const loggedInStudentRank = originalRankings.indexOf(loggedInStudent) + 1;
+
 
     return (
 <div className="container mt-4" style={{ overflow: "auto", height: "80vh" }}>
@@ -84,11 +93,8 @@ const RankingSystem = () => {
         <div className="d-flex justify-content-between mb-3">
         
         <DropdownButton title={`Ranking by ${selectedCategory}`} variant="secondary">
-  <Dropdown.Item onClick={() => setSelectedCategory("score")}>Score</Dropdown.Item>
-  <Dropdown.Item onClick={() => setSelectedCategory("attendance")}>Attendance</Dropdown.Item>
-  <Dropdown.Item onClick={() => setSelectedCategory("behavior")}>Behavior</Dropdown.Item>
-  <Dropdown.Item onClick={() => setSelectedCategory("extracurricular")}>Extracurricular</Dropdown.Item>
-  <Dropdown.Item onClick={() => setSelectedCategory("homework")}>Homework Completion</Dropdown.Item>
+  <Dropdown.Item onClick={() => setSelectedCategory("percentage")}>Overall Percentage</Dropdown.Item>
+  <Dropdown.Item onClick={() => setSelectedCategory("maxMarks")}>Marks</Dropdown.Item>
 </DropdownButton>
 
   
@@ -98,14 +104,23 @@ const RankingSystem = () => {
             <Dropdown.Item onClick={() => handleVisibleRanksChange(15)}>15 Ranks</Dropdown.Item>
           </DropdownButton>
   
-          <DropdownButton title={`Filter by Class: ${selectedClass}`} variant="secondary">
-            <Dropdown.Item onClick={() => handleClassFilter("All")}>All Classes</Dropdown.Item>
-            <Dropdown.Item onClick={() => handleClassFilter("10A")}>Class 10A</Dropdown.Item>
-            <Dropdown.Item onClick={() => handleClassFilter("10B")}>Class 10B</Dropdown.Item>
-            <Dropdown.Item onClick={() => handleClassFilter("10C")}>Class 10C</Dropdown.Item>
+          <DropdownButton title={`Filter by Test-Type: ${selectedType}`} variant="secondary">
+            <Dropdown.Item onClick={() => handleTypeFilter("All")}>All</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleTypeFilter("ST1")}>ST1</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleTypeFilter("ST2")}>ST2</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleTypeFilter("ST3")}>ST3</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleTypeFilter("END-TERM")}>END-TERM</Dropdown.Item>
+          </DropdownButton>
+
+          <DropdownButton title={`Filter by Subject: ${selectedSub}`} variant="secondary">
+            <Dropdown.Item onClick={() => handleSubFilter("All")}>All</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleSubFilter("DSA")}>DSA</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleSubFilter("WDMS")}>WDMS</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleSubFilter("NALR")}>NALR</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleSubFilter("English")}>English</Dropdown.Item>
           </DropdownButton>
         </div>
-  
+
         <SearchBar onSearch={handleSearch} />
         <br />
         <Table striped bordered hover responsive>
@@ -113,25 +128,23 @@ const RankingSystem = () => {
             <tr>
               <th>Rank</th>
               <th>Student Name</th>
-              <th>Roll No.</th>
-              <th>Class</th>
-              <th>Score</th>
-              <th>Attendance</th>
-              <th>Behavior</th>
-              <th>Homework</th>
+              <th>College ID</th>
+              <td>Subject</td>
+              <td>Test-Type</td>
+              <td>Marks</td>
+              <th>Overall Percentage</th>
             </tr>
           </thead>
           <tbody>
             {displayedRankings.map((student, index) => (
-              <tr key={index} className={student.roll_no === loggedInStudentId ? 'highlighted-row' : ''}>
+              <tr key={index} className={student.clg_id === loggedInStudentId ? 'highlighted-row' : ''}>
                 <td>{index + 1}</td>
-                <td>{student.studentName}</td>
-                <td>{student.roll_no}</td>
-                <td>{student.class}</td>
-                <td>{student.score}%</td>
-                <td>{student.attendance}%</td>
-                <td>{student.behavior}%</td>
-                <td>{student.homework}%</td>
+                <td>{student.Name}</td>
+                <td>{student.clg_id}</td>
+                <td>{student.subject}</td>
+                <td>{student.testType}</td>
+                <td>{student.scoredMarks}</td>
+                <td>{student.percentage}</td>
               </tr>
             ))}
           </tbody>

@@ -6,6 +6,9 @@
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    width: 24vw;
+    font-size: 20px;
+    font-weight: 800;
   }
   .bannerDiv{
     margin-top: 50px;
@@ -100,7 +103,6 @@
     /* background-color: #4CAF50; */
     color: rgb(30, 17, 17);
     border: none;
-    cursor: pointer;
   }
   
   input {
@@ -111,7 +113,7 @@
     color: #080707;
   }
   
-  button:hover {
+  .addGoalsButton:hover {
     cursor: pointer;
     background-color: #3dac5d;
   }
@@ -167,6 +169,15 @@
     cursor: pointer;
   }
   
+
+.addGoalsButton2{
+  background-color: rgb(23, 93, 43);  /* Set your default button color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 9vw;
+}
+
   .cross:hover {
     color: #c4c4c4;
   }
