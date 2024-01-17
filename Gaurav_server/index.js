@@ -12,7 +12,7 @@ app.use(bodyParser.json());
   
 mongoose.connect("mongodb://localhost:27017/GradeTracker");
                
-let uid = 0;
+let uid = 0; 
 let chk = 0;
 let fq = {};
 let Name='';
@@ -45,7 +45,7 @@ app.get('/getGrades', async (req, res) => {
       const newGrade = new UserModel({
         subject,
         testType,      
-        date,
+        date, 
         maxMarks,   
         scoredMarks,  
         Name:Name,
@@ -140,7 +140,15 @@ app.post('/filterGrades', async (req, res) => {
 
   
          
-app.listen(port, () => {
+app.listen(port, () => { 
     console.log(`Server is running on port ${port}`);
 });
-    
+const setUid = (newUid) => {
+    uid = newUid;
+  };
+  
+  const getUid = () => {
+    return uid;
+  };
+  
+  module.exports = { setUid, getUid };

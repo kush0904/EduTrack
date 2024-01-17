@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
-import { Container, Card, Modal, Button } from 'react-bootstrap'; // Assuming you have Bootstrap for the modal
+import { Container, Card, Modal, Button } from 'react-bootstrap'; 
 import { baseURL } from './constant';
 
-const GoalsCalendar = () => {
+const GoalsCalendar = ({ userId }) => {
   const [goals, setGoals] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [deadlineDates, setDeadlineDates] = useState([]);
@@ -17,10 +17,8 @@ const GoalsCalendar = () => {
 
   const fetchGoals = async () => {
     try {
-      const response = await axios.get(`${baseURL}/get`);
+      const response = await axios.post(`${baseURL}/get`,{ uid:userId });
       setGoals(response.data);
-
-      // Extract and store deadline dates in the state
       const dates = response.data.map((goal) => new Date(goal.deadline));
       setDeadlineDates(dates);
     } catch (err) {
