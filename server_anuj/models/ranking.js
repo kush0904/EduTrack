@@ -7,7 +7,6 @@ const rankingSchema = new mongoose.Schema({
   score: Number,
   attendance: Number,
   behavior: Number,
-  extracurricular: Number,
   homework: Number,
 });
 

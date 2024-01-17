@@ -27,13 +27,6 @@ const ScoreChart = ({ rankings }) => {
         borderWidth: 1,
       },
       {
-        label: 'ExtraCurricular',
-        data: rankings.map(student => student.extracurricular),
-        backgroundColor: 'rgba(255,206,86,0.6)',
-        borderColor: 'rgba(255,206,86,1)',
-        borderWidth: 1,
-      },
-      {
         label: 'Homework',
         data: rankings.map(student => student.homework),
         backgroundColor: 'rgba(153,102,255,0.6)',

@@ -19,6 +19,7 @@ import RankingSystem from './components/RankingSystem/RankingSystem.jsx';
 import GoalSetting from './components/GoalSetting/GoalSetting.jsx';
 import GoalsList from './components/GoalSetting/GoalsList';
 import GoalsCalendar from './components/GoalSetting/GoalsCalender.jsx';
+import BooksResourcePage from './components/ResourceLibrary/ResourceLibrary.jsx';
 function App() {
   const [theme, colorMode] = useMode();
 
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/GoalSetting" element={<GoalSetting/>} />
                 <Route path="/GoalsList" element={<GoalsList/>} />
                 <Route path="/goalsCalender" element={<GoalsCalendar/>} />
+                <Route path='/xxx' element={<BooksResourcePage/>} />
               </Routes>
             </main>
           </div>
