@@ -12,7 +12,7 @@ const goalSchema=new mongoose.Schema({
         type: String, // Change the type to String for simple date format
         default: function () {
             // Convert the date to "YYYY-MM-DD" format
-            return this.deadline ? new Date(this.deadline).toLocaleDateString('en-GB') : null;
+            return this.deadline ? new Date(this.deadline).toLocaleDateString('en-US') : null;
         },
     },
 })

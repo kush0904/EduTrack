@@ -18,7 +18,7 @@ export default function GoalsList() {
   const [deadline, setDeadline] = useState(''); // Added line for deadline
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState({});
-  const [goalAdded, setGoalAdded] = useState(false); // Modified line
+  const [goalAdded, setGoalAdded] = useState(false); 
 
   useEffect(() => {
     axios.get(`${baseURL}/get`).then((res) => setGoals(res.data)).catch((err) => console.log(err));
@@ -32,8 +32,8 @@ export default function GoalsList() {
         setUpdateUI((prevState) => !prevState);
         setInput('');
         setDeadline('');
-        setGoalAdded(true); // Modified line
-        setTimeout(() => setGoalAdded(false), 2000); // Modified line: Hide popup after 3 seconds
+        setGoalAdded(true); 
+        setTimeout(() => setGoalAdded(false), 2000); 
       })
       .catch((err) => console.log(err));
   };
@@ -63,6 +63,9 @@ export default function GoalsList() {
                  style={{ backgroundColor: '#eaeaea', padding: '2px', color: 'black', width: '20vw', height:'6vh'}}
                  placeholder="Enter Goal.."
              />
+             <label htmlFor="deadlineInput" style={{ marginTop: '10px' }}>
+              Enter Deadline:
+             </label>
              <input
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
