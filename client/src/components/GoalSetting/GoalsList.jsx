@@ -11,32 +11,34 @@ import { baseURL } from './constant';
 import './goalList.css';
 import Header from '../Global/Header';
 
-export default function GoalsList() {
+export default function GoalsList( { userId }) {
   const [goals, setGoals] = useState([]);
   const [input, setInput] = useState('');
   const [updateUI, setUpdateUI] = useState(false);
-  const [deadline, setDeadline] = useState(''); // Added line for deadline
+  const [deadline, setDeadline] = useState(''); 
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState({});
   const [goalAdded, setGoalAdded] = useState(false); 
 
   useEffect(() => {
-    axios.get(`${baseURL}/get`).then((res) => setGoals(res.data)).catch((err) => console.log(err));
-  }, [updateUI]);
+    axios.post(`${baseURL}/get`,{uid:userId})
+    .then((res) => setGoals(res.data)).catch((err) => console.log(err));
+}, [updateUI]);
 
-  const saveGoals = () => {
-    axios
-      .post(`${baseURL}/saveGoals`, { goal: input, deadline })
-      .then((res) => {
-        console.log(res.data);
-        setUpdateUI((prevState) => !prevState);
-        setInput('');
-        setDeadline('');
-        setGoalAdded(true); 
-        setTimeout(() => setGoalAdded(false), 2000); 
-      })
-      .catch((err) => console.log(err));
-  };
+
+const saveGoals = () => {
+  axios
+    .post(`${baseURL}/saveGoals`, { goal: input, deadline, id: userId })  
+    .then((res) => {
+      console.log(res.data);
+      setUpdateUI((prevState) => !prevState);
+      setInput('');
+      setDeadline('');
+      setGoalAdded(true);
+      setTimeout(() => setGoalAdded(false), 2000);
+    })
+    .catch((err) => console.log(err));
+};
 
   const deleteGoal = (id) => {
     axios.delete(`${baseURL}/deleteGoals/${id}`).then((res) => {
