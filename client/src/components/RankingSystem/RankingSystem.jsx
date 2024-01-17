@@ -7,6 +7,7 @@ import "./RankingSystem.css";
 import SearchBar from './SearchBar';
 import Chart from 'chart.js/auto';
 import Header from "../Global/Header";
+import LoggedInStudentInfo from './LoggedInStudentInfo';
 
 const RankingSystem = () => {
   
@@ -67,10 +68,18 @@ const RankingSystem = () => {
       setSearchResults(term);
     };
     
+    const loggedInStudentId=108;
+    // Find the logged-in student
+  const loggedInStudent = originalRankings.find((student) => student.roll_no === loggedInStudentId);
+
+  // Calculate rank or performance of the logged-in student
+  const loggedInStudentRank = originalRankings.indexOf(loggedInStudent) + 1;
 
     return (
 <div className="container mt-4" style={{ overflow: "auto", height: "80vh" }}>
       <Header title="Student Performance Rankings" subtitle="" />
+
+      <LoggedInStudentInfo loggedInStudent={loggedInStudent} loggedInStudentRank={loggedInStudentRank}/>
 
         <div className="d-flex justify-content-between mb-3">
         
@@ -109,13 +118,12 @@ const RankingSystem = () => {
               <th>Score</th>
               <th>Attendance</th>
               <th>Behavior</th>
-              <th>ExtraCurricular</th>
               <th>Homework</th>
             </tr>
           </thead>
           <tbody>
             {displayedRankings.map((student, index) => (
-              <tr key={index}>
+              <tr key={index} className={student.roll_no === loggedInStudentId ? 'highlighted-row' : ''}>
                 <td>{index + 1}</td>
                 <td>{student.studentName}</td>
                 <td>{student.roll_no}</td>
@@ -123,7 +131,6 @@ const RankingSystem = () => {
                 <td>{student.score}%</td>
                 <td>{student.attendance}%</td>
                 <td>{student.behavior}%</td>
-                <td>{student.extracurricular}%</td>
                 <td>{student.homework}%</td>
               </tr>
             ))}
