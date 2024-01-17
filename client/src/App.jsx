@@ -1,10 +1,8 @@
-
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { ColorModeContext, useMode } from './components/theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import './App.css';
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, BrowserRouter as Router, Navigate } from 'react-router-dom';
 
 import SideBars from './components/Global/SideBar.jsx';
 import TopBar from './components/Global/TopBar.jsx';
@@ -19,9 +17,36 @@ import RankingSystem from './components/RankingSystem/RankingSystem.jsx';
 import GoalSetting from './components/GoalSetting/GoalSetting.jsx';
 import GoalsList from './components/GoalSetting/GoalsList';
 import GoalsCalendar from './components/GoalSetting/GoalsCalender.jsx';
-import BooksResourcePage from './components/ResourceLibrary/ResourceLibrary.jsx';
+
 function App() {
   const [theme, colorMode] = useMode();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [userId, setUserId] = useState(0);
+
+
+  
+  if (!loggedIn) {
+    return (
+      <Router>
+        <ColorModeContext.Provider value={colorMode}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <div className="app">
+              <Routes>
+                <Route
+                  path="/Login"
+                  element={<Login setLoggedIn={setLoggedIn} setUserName={setUserName} setUserId={setUserId}/>}
+                />
+                <Route path="/" element={<Login setLoggedIn={setLoggedIn} setUserName={setUserName} setUserId={setUserId}/>} />
+                <Route path="/Register" element={<Register />} />
+              </Routes>
+            </div>
+          </ThemeProvider>
+        </ColorModeContext.Provider>
+      </Router>
+    );
+  }
 
   return (
     <Router>
@@ -29,22 +54,20 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <div className="app">
-            <SideBars />
+            <SideBars userName={userName} />
             <main className="content">
-              <TopBar />
+              <TopBar  />
               <Routes>
-                <Route path="/" element={<DashBoard />} />
-                <Route path="/Register" element={<Register />} />
-                <Route path="/Login" element={<Login />} />
+                <Route path="/DashBoard" element={<DashBoard userName={userName} userId={userId} />} />
                 <Route path="/UserForm" element={<UserForm />} />
-                <Route path="/MarksForm" element={<MarksForm />} />
-                <Route path="/team" element={<Team />} />
-                <Route path="/GradeTracker" element={<GradeTracker />} />
-                <Route path="/RankingSystem" element={<RankingSystem/>} />
-                <Route path="/GoalSetting" element={<GoalSetting/>} />
-                <Route path="/GoalsList" element={<GoalsList/>} />
-                <Route path="/goalsCalender" element={<GoalsCalendar/>} />
-                <Route path='/xxx' element={<BooksResourcePage/>} />
+                <Route path="/MarksForm" element={<MarksForm  />} />
+                <Route path="/team" element={<Team  />} />
+                <Route path="/GradeTracker" element={<GradeTracker userName={userName} userId={userId}/>} />
+                <Route path="/RankingSystem" element={<RankingSystem userName={userName} userId={userId}/>} />
+                <Route path="/GoalSetting" element={<GoalSetting userName={userName} userId={userId}/>} />
+                <Route path="/GoalsList" element={<GoalsList userName={userName} userId={userId}/>} />
+                <Route path="/goalsCalender" element={<GoalsCalendar userName={userName} userId={userId} />} />
+
               </Routes>
             </main>
           </div>
@@ -54,4 +77,4 @@ function App() {
   );
 }
 
-export default App;;
+export default App;
