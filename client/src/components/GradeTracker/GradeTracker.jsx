@@ -10,7 +10,7 @@ import Modal from 'react-modal';
 import { Box } from '@mui/material';
 import Header from '../Global/Header';
 
-function GradeTracker({setUserName}) {
+function GradeTracker() {
   const [grades, setGrades] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newGrade, setNewGrade] = useState({
@@ -37,12 +37,8 @@ function GradeTracker({setUserName}) {
       .catch(err => console.log(err));
   };
 
-
-  useEffect(()=>{
-    const userName = Name;
-    setUserName(username);
-  },[setUserName])
-
+console.log(Name);
+ 
 useEffect(() => {
   fetchGrades(); 
 }, []); 
@@ -186,7 +182,7 @@ console.log(Name);
       <div className="Grade-Box1">
         <div className='Grade-UserInfo'>
           <img src={UserImage} alt="User" className="Grade-user-image" /> 
-          <span className="Grade-username">Gaurav Thakur</span>
+          <span className="Grade-username">{Name} </span>
           <img src={UniImage} alt="User" className="Grade-user-image" />
           <span className="Grade-username">Chitkra University</span>
           <img src={degree} alt="User" className="Grade-user-image" />

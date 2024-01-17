@@ -21,27 +21,31 @@ import GoalsCalendar from './components/GoalSetting/GoalsCalender.jsx';
 function App() {
   const [theme, colorMode] = useMode();
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState('');
+
+
 
   if (!loggedIn) {
     return (
-        <Router>
-            <ColorModeContext.Provider value={colorMode}>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline />
-                    <div className="app">
-                        <Routes>
-                            <Route path="/Login" element={<Login setLoggedIn={setLoggedIn} />} />
-                            <Route path="/" element={<Login setLoggedIn={setLoggedIn} />} />
-                            <Route path="/Register" element={<Register />} />
-                        </Routes>
-                    </div>
-                </ThemeProvider>
-            </ColorModeContext.Provider>
-        </Router>
+      <Router>
+        <ColorModeContext.Provider value={colorMode}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <div className="app">
+              <Routes>
+                <Route
+                  path="/Login"
+                  element={<Login setLoggedIn={setLoggedIn} setUserName={setUserName} />}
+                />
+                <Route path="/" element={<Login setLoggedIn={setLoggedIn} setUserName={setUserName} />} />
+                <Route path="/Register" element={<Register />} />
+              </Routes>
+            </div>
+          </ThemeProvider>
+        </ColorModeContext.Provider>
+      </Router>
     );
-}
-
+  }
 
   return (
     <Router>
@@ -49,19 +53,19 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <div className="app">
-          <SideBars userName={userName} setUserName={setUserName} />
+            <SideBars userName={userName} />
             <main className="content">
-              <TopBar />
+              <TopBar  />
               <Routes>
-                <Route path="/DashBoard" element={<DashBoard />} />
+                <Route path="/DashBoard" element={<DashBoard userName={userName} />} />
                 <Route path="/UserForm" element={<UserForm />} />
-                <Route path="/MarksForm" element={<MarksForm />} />
-                <Route path="/team" element={<Team />} />
-                <Route path="/GradeTracker" element={<GradeTracker setUserName={setUserName}/>}  />
-                <Route path="/RankingSystem" element={<RankingSystem />} />
-                <Route path="/GoalSetting" element={<GoalSetting />} />
-                <Route path="/GoalsList" element={<GoalsList />} />
-                <Route path="/goalsCalender" element={<GoalsCalendar />} />
+                <Route path="/MarksForm" element={<MarksForm  />} />
+                <Route path="/team" element={<Team  />} />
+                <Route path="/GradeTracker" element={<GradeTracker userName={userName} />} />
+                <Route path="/RankingSystem" element={<RankingSystem userName={userName} />} />
+                <Route path="/GoalSetting" element={<GoalSetting userName={userName} />} />
+                <Route path="/GoalsList" element={<GoalsList userName={userName} />} />
+                <Route path="/goalsCalender" element={<GoalsCalendar userName={userName} />} />
               </Routes>
             </main>
           </div>
