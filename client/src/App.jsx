@@ -21,7 +21,7 @@ import GoalsCalendar from './components/GoalSetting/GoalsCalender.jsx';
 function App() {
   const [theme, colorMode] = useMode();
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const [userName, setUserName] = useState("");
 
   if (!loggedIn) {
     return (
@@ -49,7 +49,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <div className="app">
-            <SideBars />
+          <SideBars userName={userName} setUserName={setUserName} />
             <main className="content">
               <TopBar />
               <Routes>
@@ -57,7 +57,7 @@ function App() {
                 <Route path="/UserForm" element={<UserForm />} />
                 <Route path="/MarksForm" element={<MarksForm />} />
                 <Route path="/team" element={<Team />} />
-                <Route path="/GradeTracker" element={<GradeTracker />} />
+                <Route path="/GradeTracker" element={<GradeTracker setUserName={setUserName}/>}  />
                 <Route path="/RankingSystem" element={<RankingSystem />} />
                 <Route path="/GoalSetting" element={<GoalSetting />} />
                 <Route path="/GoalsList" element={<GoalsList />} />

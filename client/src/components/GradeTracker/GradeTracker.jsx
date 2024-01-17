@@ -24,6 +24,7 @@ function GradeTracker() {
   const [selectedSortOption, setSelectedSortOption] = useState('Subject');
   const [sortOrder, setSortOrder] = useState('ASC');
 
+
   const fetchGrades = () => {
     axios.get('http://localhost:4001/getGrades')
       .then(response => {
@@ -347,4 +348,4 @@ function GradeTracker() {
   );
 }
 
-export default GradeTracker;
+export default GradeTracker;

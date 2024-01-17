@@ -60,22 +60,22 @@ export default function GoalsList() {
                 value={input}
                  onChange={(e) => setInput(e.target.value)} 
                  type="text" 
-                 style={{ backgroundColor: '#eaeaea', padding: '5px', color: 'black', width: '30vw'}}
+                 style={{ backgroundColor: '#eaeaea', padding: '2px', color: 'black', width: '20vw', height:'6vh'}}
                  placeholder="Enter Goal.."
              />
              <input
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
               type="date"
-              style={{ backgroundColor: '#eaeaea', padding: '5px' , width: '30vw'}}
+              style={{ backgroundColor: '#eaeaea', padding: '2px' ,width: '20vw', height:'6vh'}}
               placeholder="Enter deadline"
              />
-            <button onClick={saveGoals} style={{backgroundColor: '#eaeaea', marginRight: '10px', border:'2px solid white'}}>ADD</button>
+            <button onClick={saveGoals} style={{backgroundColor: '#eaeaea', marginRight: '10px', border:'2px solid white', width: '12vw', height:'6vh'}}>ADD</button>
 
             <br />
             <div className="ml-auto">
-              <button className="btn btn-success addGoalsButton2">
-                <Nav.Link as={Link} to="/goalsCalender" className="btn">
+              <button className="btn btn-success addGoalsButton2" style={{width: '14vw', height:'6vh'}}>
+                <Nav.Link as={Link} to="/goalsCalender" className="btn" >
                   VIEW YOUR CALENDAR
                 </Nav.Link>
               </button>
@@ -110,7 +110,7 @@ export default function GoalsList() {
           </table>} */} 
 
     {goals.length > 0 &&
-    <Table striped bordered hover responsive>
+    <Table striped bordered hover responsive className='GoalsList'>
           <thead>
             <tr>
                 <th>S.No.</th>
@@ -126,8 +126,8 @@ export default function GoalsList() {
                   <td>{element.goal}</td>
                   <td>{element.deadline}</td>
                   <td>
-                    <button className="btn btn-primary me-2" onClick={() => updateGoals(element.goal, element._id)}>Edit</button>
-                    <button className="btn btn-danger" onClick={() => deleteGoal(element._id)}>Delete</button>
+                    <button className="button-30" onClick={() => updateGoals(element.goal, element._id)}>Edit</button>
+                    <button className="button-30" onClick={() => deleteGoal(element._id)}>Delete</button>
                   </td>
               </tr>
             ))}
