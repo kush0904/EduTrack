@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { ColorModeContext, useMode } from './components/theme';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import './App.css';
-import { Route, Routes, BrowserRouter as Router, Navigate } from 'react-router-dom';
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 
 import SideBars from './components/Global/SideBar.jsx';
 import TopBar from './components/Global/TopBar.jsx';
-import DashBoard from './components/Dashboard/Dashboard.jsx'
+import DashBoard from './components/Dashboard/Dashboard.jsx';
 import Login from './components/Authorization/Login.jsx';
 import Register from './components/Authorization/Register.jsx';
 import UserForm from './components/UserForm/UserForm.jsx';
@@ -24,6 +24,23 @@ function App() {
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState(0);
 
+  useEffect(() => {
+    const storedLoggedIn = localStorage.getItem('loggedIn');
+    const storedUserName = localStorage.getItem('userName');
+    const storedUserId = localStorage.getItem('userId');
+
+    if (storedLoggedIn && storedUserName && storedUserId) {
+      setLoggedIn(true);
+      setUserName(storedUserName);
+      setUserId(Number(storedUserId));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('loggedIn', loggedIn);
+    localStorage.setItem('userName', userName);
+    localStorage.setItem('userId', userId);
+  }, [loggedIn, userName, userId]);
 
   
   if (!loggedIn) {
@@ -58,7 +75,7 @@ function App() {
             <main className="content">
               <TopBar  />
               <Routes>
-                <Route path="/DashBoard" element={<DashBoard userName={userName} userId={userId} />} />
+                <Route path="/" element={<DashBoard userName={userName} userId={userId} />} />
                 <Route path="/UserForm" element={<UserForm />} />
                 <Route path="/MarksForm" element={<MarksForm  />} />
                 <Route path="/team" element={<Team  />} />

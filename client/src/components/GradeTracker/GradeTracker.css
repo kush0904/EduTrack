@@ -25,7 +25,6 @@
 }
 .Grade-Box2{
   flex:7;
-  background-color: black;
   height: auto;
   width: auto;
   margin: 23px 15px 15px 15px;
@@ -64,6 +63,8 @@
   align-items: center;
   justify-content: space-evenly; 
    margin: 3px;
+   background-color: black;
+
 }
 
 .Grade-Heading {

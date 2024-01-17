@@ -184,7 +184,7 @@ console.log(Name);
           <img src={UserImage} alt="User" className="Grade-user-image" /> 
           <span className="Grade-username">{Name} </span>
           <img src={UniImage} alt="User" className="Grade-user-image" />
-          <span className="Grade-username">Chitkra University</span>
+          <span className="Grade-username">Chitkara University</span>
           <img src={degree} alt="User" className="Grade-user-image" />
           <span className="Grade-username">Computer Science</span>
           <img src={id} alt="User" className="Grade-user-image" />
