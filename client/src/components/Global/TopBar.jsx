@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, IconButton, useTheme, Typography } from '@mui/material'; 
+import React, { useState } from 'react';
+import { Box, IconButton, Menu, MenuItem, useTheme, Typography } from '@mui/material'; 
 import { useContext } from 'react';
 import { ColorModeContext, tokens } from '../theme';
 import InputBase from '@mui/material/InputBase'; 
@@ -9,11 +9,34 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
+import { NavLink, Navigate, useNavigate } from 'react-router-dom';
+
+
 
 export default function TopBar({ isCollapsed }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const navigate = useNavigate();
+
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogOut = () => {
+    navigate("/");
+
+    window.location.reload();
+    handleMenuClose();
+  };
 
   return (
     <Box
@@ -29,18 +52,11 @@ export default function TopBar({ isCollapsed }) {
         backgroundColor={colors.primary[800]}
         borderRadius="3px"
       >
-        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search"color = "red" />
-        <IconButton type="button" sx={{ p: 1 }} >
+        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" color="red" />
+        <IconButton type="button" sx={{ p: 1 }}>
           <SearchIcon />
         </IconButton>
       </Box>
-
-      {/* USERNAME */}
-      {isCollapsed && (
-        <Typography variant="body2" color={colors.grey[100]} sx={{ ml: 2 }}>
-          Kush Garg
-        </Typography>
-      )}
 
       {/* ICONS */}
       <Box display="flex">
@@ -51,15 +67,23 @@ export default function TopBar({ isCollapsed }) {
             <LightModeOutlinedIcon />
           )}
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleMenuOpen}>
           <NotificationsOutlinedIcon />
         </IconButton>
         <IconButton>
           <SettingsOutlinedIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleMenuOpen}>
           <PersonOutlinedIcon />
         </IconButton>
+
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+        </Menu>
       </Box>
     </Box>
   );

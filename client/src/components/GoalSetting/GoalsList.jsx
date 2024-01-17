@@ -1,79 +1,4 @@
-// import React , { useEffect, useState }from "react";
 
-// import axios from "axios";
-// import ToDo from "./ToDo";
-// import {baseURL } from "./constant";
-// import './goalSetting.css';
-// import UpdatePopup from "./UpdatePopup";
-
-
-// export default function GoalsList(){
-//     const[goals,setGoals]=useState([]);
-//     const[input,setInput]=useState("");
-//     const[updateUI,setUpdateUI]=useState(false);
-//     const[showPopup,setShowPopup]=useState(false);
-//     const[popupContent,setPopupContent]=useState({});
-
-//     useEffect(()=>{
-//         axios.get(`${baseURL}/get`)
-//         .then((res)=>setGoals(res.data))
-//         .catch((err)=>console.log(err));
-//     },[updateUI]);
-
-//     const saveGoals=()=>{
-//         axios.post(`${baseURL}/saveGoals`,{goal:input})
-//         .then(res=>{
-//             console.log(res.data);
-//             setUpdateUI((prevState)=>!prevState)
-//             setInput("")
-//         })
-//         .catch((err)=>console.log(err));
-//     };
-   
-//     return(
-//         <>
-            
-//             <main className="goalContainer">
-//                 <div >
-//                     <h1 className="title">YOUR GOALS</h1>
-//                     <div className="input_holder">
-//                     <input
-//                         value={input}
-//                         onChange={(e)=>setInput(e.target.value)}
-//                         type="text"
-//                         placeholder="Enter Goal.."
-//                     />
-//                     <button onClick={saveGoals}>ADD</button>
-//                     </div>
-
-//                     <div className="list">
-//                         {
-//                         goals.map(element=>
-//                             <ToDo
-//                                 key={element._id}
-//                                 text={element.goal}
-//                                 id={element._id}
-//                                 setUpdateUI={setUpdateUI}
-//                                 setShowPopup={setShowPopup}
-//                                 setPopupContent={setPopupContent}
-//                             />)
-//                         }
-//                     </div>
-//                 </div> 
-//                 {/* condional rendering of the update popup */}
-//                 {
-//                     showPopup && 
-//                     <
-//                         UpdatePopup 
-//                         setShowPopup={setShowPopup}
-//                         popupContent={popupContent}
-//                         setUpdateUI={setUpdateUI}
-//                     />
-//                 }
-//             </main>
-//         </>
-//     );
-// }
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -83,7 +8,8 @@ import UpdatePopup from './UpdatePopup';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { baseURL } from './constant';
-import './goalList.css'
+import './goalList.css';
+import Header from '../Global/Header';
 
 export default function GoalsList() {
   const [goals, setGoals] = useState([]);
@@ -126,29 +52,30 @@ export default function GoalsList() {
 
   return (
     <>
-      <main className="goalContainer">
+      <main className="goalContainer m-3" >
         <div>
-          <h1 className="title">YOUR GOALS</h1>
+          <Header title="Keep a track of your goals" subtitle="" /> 
           <div className="input_holder">
             <input 
                 value={input}
                  onChange={(e) => setInput(e.target.value)} 
                  type="text" 
-                 style={{ backgroundColor: '#eaeaea', padding: '5px', color: 'black' }}
+                 style={{ backgroundColor: '#eaeaea', padding: '2px', color: 'black', width: '20vw', height:'6vh'}}
                  placeholder="Enter Goal.."
              />
              <input
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
               type="date"
-              style={{ backgroundColor: '#eaeaea', padding: '5px' }}
-              placeholder="Enter deadline" // Add this line
+              style={{ backgroundColor: '#eaeaea', padding: '2px' ,width: '20vw', height:'6vh'}}
+              placeholder="Enter deadline"
              />
-            <button onClick={saveGoals} style={{backgroundColor: '#eaeaea', marginRight: '10px' }}>ADD</button>
+            <button onClick={saveGoals} style={{backgroundColor: '#eaeaea', marginRight: '10px', border:'2px solid white', width: '12vw', height:'6vh'}}>ADD</button>
 
+            <br />
             <div className="ml-auto">
-              <button className="btn btn-success">
-                <Nav.Link as={Link} to="/goalsCalender" className="btn">
+              <button className="btn btn-success addGoalsButton2" style={{width: '14vw', height:'6vh'}}>
+                <Nav.Link as={Link} to="/goalsCalender" className="btn" >
                   VIEW YOUR CALENDAR
                 </Nav.Link>
               </button>
@@ -183,7 +110,7 @@ export default function GoalsList() {
           </table>} */} 
 
     {goals.length > 0 &&
-    <Table striped bordered hover responsive>
+    <Table striped bordered hover responsive className='GoalsList'>
           <thead>
             <tr>
                 <th>S.No.</th>
@@ -199,8 +126,8 @@ export default function GoalsList() {
                   <td>{element.goal}</td>
                   <td>{element.deadline}</td>
                   <td>
-                    <button className="btn btn-primary me-2" onClick={() => updateGoals(element.goal, element._id)}>Edit</button>
-                    <button className="btn btn-danger" onClick={() => deleteGoal(element._id)}>Delete</button>
+                    <button className="button-30" onClick={() => updateGoals(element.goal, element._id)}>Edit</button>
+                    <button className="button-30" onClick={() => deleteGoal(element._id)}>Delete</button>
                   </td>
               </tr>
             ))}
