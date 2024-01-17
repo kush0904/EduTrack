@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { Box, IconButton, Menu, MenuItem, useTheme, Typography } from '@mui/material'; 
+import { Box, IconButton, Menu, MenuItem, useTheme, Typography } from '@mui/material';
 import { useContext } from 'react';
 import { ColorModeContext, tokens } from '../theme';
-import InputBase from '@mui/material/InputBase'; 
+import InputBase from '@mui/material/InputBase';
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavLink, Navigate, useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from 'react-router-dom';
 
 export default function TopBar({ isCollapsed }) {
   const theme = useTheme();
@@ -19,22 +17,24 @@ export default function TopBar({ isCollapsed }) {
   const colorMode = useContext(ColorModeContext);
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const navigate = useNavigate();
-
 
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
 
   const handleLogOut = () => {
-    navigate("/");
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
 
+    navigate("/");
     window.location.reload();
+
     handleMenuClose();
   };
 
