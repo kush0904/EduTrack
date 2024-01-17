@@ -3,7 +3,7 @@ const express=require("express");
 const bcrypt=require('bcryptjs');
 const router=express.Router();
 const cors =require('cors');
-const axios = require('axios'); // Import axios
+const axios = require('axios'); 
 
 require("../db/conn");
 const User=require("../models/registerSchema")
@@ -63,13 +63,15 @@ router.post('/login', async (req, res) => {
             });
             try {
                 await axios.post('http://localhost:4001/api/saveUserId', { userId,nm });
+
                 console.log('UserId saved successfully');
                 console.log(userId);
 
-            } catch (error) {
+            } catch (error) { 
                 console.error('Error saving userId:', error.message);
             }
    
+           
             if (!isMatch) {
                 res.status(400).json({ error: "Invalid Credentials" });
             } else {

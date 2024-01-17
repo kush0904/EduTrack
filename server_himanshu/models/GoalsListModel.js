@@ -8,13 +8,16 @@ const goalSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    
     deadline: {
-        type: String, // Change the type to String for simple date format
+        type: String,
         default: function () {
-            // Convert the date to "YYYY-MM-DD" format
             return this.deadline ? new Date(this.deadline).toLocaleDateString('en-US') : null;
         },
     },
+    id:{
+        type:String
+    }
 })
 
 module.exports=mongoose.model("Goals",goalSchema);

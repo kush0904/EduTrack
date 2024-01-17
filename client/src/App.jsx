@@ -22,9 +22,10 @@ function App() {
   const [theme, colorMode] = useMode();
   const [loggedIn, setLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
+  const [userId, setUserId] = useState(0);
 
 
-
+  
   if (!loggedIn) {
     return (
       <Router>
@@ -35,9 +36,9 @@ function App() {
               <Routes>
                 <Route
                   path="/Login"
-                  element={<Login setLoggedIn={setLoggedIn} setUserName={setUserName} />}
+                  element={<Login setLoggedIn={setLoggedIn} setUserName={setUserName} setUserId={setUserId}/>}
                 />
-                <Route path="/" element={<Login setLoggedIn={setLoggedIn} setUserName={setUserName} />} />
+                <Route path="/" element={<Login setLoggedIn={setLoggedIn} setUserName={setUserName} setUserId={setUserId}/>} />
                 <Route path="/Register" element={<Register />} />
               </Routes>
             </div>
@@ -57,15 +58,15 @@ function App() {
             <main className="content">
               <TopBar  />
               <Routes>
-                <Route path="/DashBoard" element={<DashBoard userName={userName} />} />
+                <Route path="/DashBoard" element={<DashBoard userName={userName} userId={userId} />} />
                 <Route path="/UserForm" element={<UserForm />} />
                 <Route path="/MarksForm" element={<MarksForm  />} />
                 <Route path="/team" element={<Team  />} />
-                <Route path="/GradeTracker" element={<GradeTracker userName={userName} />} />
-                <Route path="/RankingSystem" element={<RankingSystem userName={userName} />} />
-                <Route path="/GoalSetting" element={<GoalSetting userName={userName} />} />
-                <Route path="/GoalsList" element={<GoalsList userName={userName} />} />
-                <Route path="/goalsCalender" element={<GoalsCalendar userName={userName} />} />
+                <Route path="/GradeTracker" element={<GradeTracker userName={userName} userId={userId}/>} />
+                <Route path="/RankingSystem" element={<RankingSystem userName={userName} userId={userId}/>} />
+                <Route path="/GoalSetting" element={<GoalSetting userName={userName} userId={userId}/>} />
+                <Route path="/GoalsList" element={<GoalsList userName={userName} userId={userId}/>} />
+                <Route path="/goalsCalender" element={<GoalsCalendar userName={userName} userId={userId} />} />
               </Routes>
             </main>
           </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './login.css';
 
-const Login = ({ setLoggedIn, setUserName }) => {
+const Login = ({ setLoggedIn, setUserName,setUserId }) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -30,7 +30,7 @@ const Login = ({ setLoggedIn, setUserName }) => {
       const { nm: name, userId } = data;
 
       setUserName(name);
-
+        setUserId(userId);
       navigate('/DashBoard');
     }
   };
