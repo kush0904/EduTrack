@@ -7,7 +7,7 @@
 
 }
 
-.GoalsList td, .Grade-table th {
+.GoalsList td {
   background-color: black;
     padding: 8px;
    text-align: center;
@@ -80,4 +80,39 @@
   .button-30:active {
     box-shadow: #D6D6E7 0 3px 7px inset;
     transform: translateY(2px);
+  }
+  
+  .GoalsAchieved{
+    width: 50vw;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+  
+
+}
+
+.GoalsAchieved td {
+  background-color: black;
+    padding: 8px;
+   text-align: center;
+   vertical-align: middle;
+   color: #ffffff;
+  }
+  
+  .GoalsAchieved th{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: large;
+    height: auto;
+    width: auto;
+    margin: 15px  15px 7px 15px;
+    border:6px solid rgb(102, 71, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(128, 0, 128, 9);
+    text-align: center;
+}
+  .achieved-goals-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
