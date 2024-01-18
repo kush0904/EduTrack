@@ -11,6 +11,13 @@ const GoalsCalendar = ({ userId }) => {
   const [deadlineDates, setDeadlineDates] = useState([]);
   const [selectedGoals, setSelectedGoals] = useState([]);
   const [selectedGoalIndex, setSelectedGoalIndex] = useState(0);
+  const [randomQuotes] = useState([
+    "Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+    "The only limit to our realization of tomorrow will be our doubts of today. - Franklin D. Roosevelt",
+    "Setting goals is the first step in turning the invisible into the visible. - Tony Robbins",
+    "Your goals are the road maps that guide you and show you what is possible for your life. - Les Brown",
+    "The only way to achieve the impossible is to believe it is possible. - Charles Kingsleigh",
+  ]);
 
   useEffect(() => {
     fetchGoals();
@@ -48,17 +55,22 @@ const GoalsCalendar = ({ userId }) => {
     setSelectedGoalIndex(0);
   };
 
+  const getRandomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * randomQuotes.length);
+    return randomQuotes[randomIndex];
+  };
+
   return (
     <Container className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
       <Card style={{ width: '400px', padding: '20px' }}>
         <h2 className="text-center">Goals Calendar</h2>
         <Calendar
-  onChange={(date) => setSelectedDate(date)}
-  value={selectedDate}
-  tileClassName={({ date }) => shouldHighlightDate(date) ? 'highlighted' : null}
-  onClickDay={(date) => handleClick(date)}
-  className="glow-calendar"
-/>
+          onChange={(date) => setSelectedDate(date)}
+          value={selectedDate}
+          tileClassName={({ date }) => shouldHighlightDate(date) ? 'highlighted' : null}
+          onClickDay={(date) => handleClick(date)}
+          className="glow-calendar"
+        />
 
         <Modal show={selectedGoals.length > 0} onHide={() => setSelectedGoals([])}>
           <Modal.Header style={{ background: 'linear-gradient(to right, #363636, #7F7F7F)' }}>
@@ -77,7 +89,9 @@ const GoalsCalendar = ({ userId }) => {
                     </li>
                   ))}
                 </ul>
-                
+                <p>
+                  {getRandomQuote()}
+                </p>
               </>
             )}
           </Modal.Body>
@@ -91,11 +105,11 @@ const GoalsCalendar = ({ userId }) => {
 
       <style>
         {`
-        .glow-calendar{
-          height:50vh;
-          width:1500px;
-          font-size:20px;
-        }
+          .glow-calendar{
+            height:50vh;
+            width:1500px;
+            font-size:20px;
+          }
           .highlighted {
             background-color: red;
             color: #FFFFFF;
@@ -105,27 +119,22 @@ const GoalsCalendar = ({ userId }) => {
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
             transition: background-color 0.3s;
           }
-
           .highlighted:hover {
             background: linear-gradient(to right, red, yellow);
             color: black;
           }
-
           .modal-content {
             background-color: #f8f9fa;
             color: #000000;
           }
-
           .modal-header {
             background-color: #007BFF;
             color: #FFFFFF;
           }
-
           .modal-footer {
             background-color: #007BFF;
             color: #FFFFFF;
           }
-
           .modal-footer .btn-secondary:hover {
             background-color: #DC3545;
           }

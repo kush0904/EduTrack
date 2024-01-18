@@ -5,7 +5,7 @@ const ConfettiEffect = ({ message }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 5000); // Adjust the duration as needed
+    }, 5000); 
 
     return () => clearTimeout(timer);
   }, []);

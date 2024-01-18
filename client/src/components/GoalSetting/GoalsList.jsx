@@ -79,7 +79,7 @@ export default function GoalsList({ userId }) {
       console.log(res.data);
       setUpdateUI((prevState) => !prevState);
       setGoalCompleted(true);
-      setTimeout(() => setGoalCompleted(false), 5000); // Adjust the duration as needed
+      setTimeout(() => setGoalCompleted(false), 5000); 
     });
   };
   const fetchAchievedGoals = () => {
@@ -169,12 +169,12 @@ export default function GoalsList({ userId }) {
                     <td>{element.goal}</td>
                     <td>{element.deadline}</td>
                     <td>
-                      <button
-                        className="button-30"
-                        onClick={() => updateGoals(element.goal, element._id)}
-                      >
-                        Edit
-                      </button>
+                    <button
+  className="button-30"
+  onClick={() => updateGoals(element.goal, element._id, element.deadline)}
+>
+  Edit
+</button>
                       <button
                         className="button-30"
                         onClick={() => deleteGoal(element._id)}

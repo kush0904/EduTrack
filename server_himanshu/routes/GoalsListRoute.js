@@ -48,18 +48,22 @@ router.post('/saveGoals', (req, res) => {
       });
   });
 
-router.put('/updateGoals/:id', (req, res) => {
+  router.put('/updateGoals/:id', (req, res) => {
     const { id } = req.params;
     const { goal, deadline } = req.body;
+    
+    console.log(req.body); 
+    
     GoalsListModel.findByIdAndUpdate(id, { goal, deadline })
-        .then(() => {
-            res.send("Updated Successfully!");
-        })
-        .catch((err) => {
-            console.log(err);
-            res.send({ error: err, msg: "Something went wrong!" });
-        });
-});
+      .then(() => {
+        res.send("Updated Successfully!");
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send({ error: err, msg: "Something went wrong!" });
+      });
+  });
+  
 
 router.delete('/deleteGoals/:id', (req, res) => {
     const { id } = req.params;
