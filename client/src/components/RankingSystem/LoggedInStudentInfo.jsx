@@ -5,10 +5,9 @@ const LoggedInStudentInfo = ({ loggedInStudent , loggedInStudentRank}) => {
     <div className="mb-3 ">
       {loggedInStudent && (
         <p className="text-center" style={{color:"red"}}>
-          <strong>Name : {loggedInStudent.studentName}</strong> |
-          Roll No. : {loggedInStudent.roll_no} |
-          Class : {loggedInStudent.class} |
-           Your Rank: <strong>{loggedInStudentRank}</strong>
+          <strong>Name : {loggedInStudent.Name}</strong> |
+         <strong> Roll No. : {loggedInStudent.clg_id} </strong>|
+         <strong> Your Rank: {loggedInStudentRank}</strong>
         </p>
       )}
     </div>
