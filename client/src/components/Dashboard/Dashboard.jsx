@@ -9,7 +9,6 @@ const Dashboard = () => {
       <Box m="20px">
         <Box alignItems="center">
           <Header title="EDUTRACK+" subtitle="" />
-          <h4 style={{textAlign:"center", marginBottom:"4vh"}}>Tracking Academic Success Efficiently</h4>
           <ChatBot />
         </Box>  
       </Box>

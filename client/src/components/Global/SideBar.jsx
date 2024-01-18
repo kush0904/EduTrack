@@ -142,13 +142,7 @@ const Sidebars = ({ userName }) => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Contacts Information"
-              to="/contacts"
-              icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+
             <Item
               title="Academic Information"
               to="/MarksForm"
@@ -173,7 +167,7 @@ const Sidebars = ({ userName }) => {
             />
             <Item
               title="Calendar"
-              to="/calendar"
+              to="/goalsCalender"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -221,7 +215,7 @@ const Sidebars = ({ userName }) => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Charts
+              Misc.
             </Typography>
             <Item
               title="FAQs"
@@ -231,19 +225,13 @@ const Sidebars = ({ userName }) => {
               setSelected={setSelected}
             />
             <Item
-              title="Pie Chart"
-              to="/pie"
+              title="Bar Graph"
+              to="/RankingSystem"
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Line Chart"
-              to="/line"
-              icon={<TimelineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
+
             
           </Box>
         </Menu>
