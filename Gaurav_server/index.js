@@ -19,7 +19,7 @@ let Name='';
 
 app.post('/api/saveUserId', (req, res) => {
     console.log(req.body); 
-    uid = req.body.userId;
+    uid = req.body.userId;  
     Name=req.body.nm;
     console.log(uid);    
     console.log(Name);    

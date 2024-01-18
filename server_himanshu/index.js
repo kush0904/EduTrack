@@ -16,7 +16,7 @@ app.use(cors());   //middleware
 // app.get("/",(request,response)=>{  
 //     response.send("Hello World")
 // });
-
+   
 
 mongoose
     .connect("mongodb://localhost:27017/goals")
