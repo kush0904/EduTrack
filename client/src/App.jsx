@@ -25,7 +25,10 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState(0);
-
+  const [allgrades, setallGrades] = useState([]);
+  const [allSubjects, setAllSubjects] = useState([]); 
+  const [allTestTypes, setAllTestTypes] = useState([]);
+  console.log(userId,allgrades,allSubjects,allTestTypes);
   useEffect(() => {
     const storedLoggedIn = localStorage.getItem('loggedIn');
     const storedUserName = localStorage.getItem('userName');
@@ -59,6 +62,7 @@ function App() {
                 />
                 <Route path="/" element={<Login setLoggedIn={setLoggedIn} setUserName={setUserName} setUserId={setUserId}/>} />
                 <Route path="/Register" element={<Register />} />
+
               </Routes>
             </div>
           </ThemeProvider>
@@ -81,8 +85,8 @@ function App() {
                 <Route path="/UserForm" element={<UserForm />} />
                 <Route path="/MarksForm" element={<MarksForm  />} />
                 <Route path="/team" element={<Team  />} />
-                <Route path="/GradeTracker" element={<GradeTracker userName={userName} userId={userId}/>} />
-                <Route path="/RankingSystem" element={<RankingSystem userName={userName} userId={userId}/>} />
+                <Route path="/GradeTracker" element={<GradeTracker userName={userName} userId={userId} setallGrades={setallGrades} setAllSubjects={setAllSubjects} setAllTestTypes={setAllTestTypes}/>} />
+                <Route path="/RankingSystem" element={<RankingSystem userId={userId} allgrades={allgrades} allSubjects={allSubjects} allTestTypes={allTestTypes} />} />
                 <Route path="/GoalSetting" element={<GoalSetting userName={userName} userId={userId}/>} />
                 <Route path="/GoalsList" element={<GoalsList userName={userName} userId={userId}/>} />
                 <Route path="/goalsCalender" element={<GoalsCalendar userName={userName} userId={userId} />} />
