@@ -16,10 +16,10 @@ color: black;
 .formal-table th {
   background-color: #e6f7ff;
 }
-
+/* 
 .formal-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
-}
+} */
 
 
 

@@ -94,7 +94,7 @@ function App() {
                 <Route path="/Faq" element={<Faq userName={userName} userId={userId} />} />
 
 
-              </Routes> 
+              </Routes>
             </main>
           </div>
         </ThemeProvider>

@@ -6,7 +6,7 @@ const UserModel = require('./model/user');
 const app = express();        
 const axios = require('axios');
 const bodyParser = require('body-parser');  
-app.use(cors());   
+app.use(cors());  
 app.use(express.json());                    
 app.use(bodyParser.json());              
   
