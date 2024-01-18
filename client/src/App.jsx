@@ -17,6 +17,8 @@ import RankingSystem from './components/RankingSystem/RankingSystem.jsx';
 import GoalSetting from './components/GoalSetting/GoalSetting.jsx';
 import GoalsList from './components/GoalSetting/GoalsList';
 import GoalsCalendar from './components/GoalSetting/GoalsCalender.jsx';
+import BooksResourcePage from './components/ResourceLibrary/ResourceLibrary.jsx';
+
 
 function App() {
   const [theme, colorMode] = useMode();

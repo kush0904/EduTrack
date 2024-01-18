@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
 const rankingSchema = new mongoose.Schema({
-  studentName: String,
-  class:String,
-  roll_no:Number,
-  score: Number,
-  attendance: Number,
-  behavior: Number,
-  homework: Number,
+  subject: String,
+  testType: String,
+  maxMarks: Number,
+  Date: String,
+  scoredMarks: Number,
+  percentage: Number,
+  Name:String,
+  clg_id:String,
 });
 
 const Ranking = mongoose.model('rankings', rankingSchema);
