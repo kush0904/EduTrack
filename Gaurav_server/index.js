@@ -19,14 +19,28 @@ let Name='';
 
 app.post('/api/saveUserId', (req, res) => {
     console.log(req.body); 
-    uid = req.body.userId;
+    uid = req.body.userId;  
     Name=req.body.nm;
     console.log(uid);    
     console.log(Name);    
 
     res.json({ message: 'UserId saved successfully' }); 
 });
-
+app.get('/getRanksData', async (req, res) => {
+    try {   
+        const grades = await UserModel.find();
+        const subjects = await UserModel.distinct('subject');
+        const tests=await UserModel.distinct('testType');
+    res.json({
+      grades: grades,
+      subjects: subjects,
+      tests:tests, 
+    });
+    } catch (err) {    
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});  
 app.get('/getGrades', async (req, res) => {
     try {   
         const grades = await UserModel.find({ clg_id: uid });
@@ -38,14 +52,13 @@ app.get('/getGrades', async (req, res) => {
 });  
 
   app.post('/addGrade', async (req, res) => {  
-    const { subject, testType, date, maxMarks, scoredMarks } = req.body;
+    const { subject, testType, maxMarks, scoredMarks } = req.body;
      
     
     try { 
       const newGrade = new UserModel({
         subject,
         testType,      
-        date, 
         maxMarks,   
         scoredMarks,  
         Name:Name,

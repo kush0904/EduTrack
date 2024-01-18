@@ -4,7 +4,6 @@ const userSchema = new mongoose.Schema({
   subject: String,
   testType: String,
   maxMarks: Number,
-  Date: String,
   scoredMarks: Number,
   percentage: Number,
   Name:String,

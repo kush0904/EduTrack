@@ -1,3 +1,31 @@
+.formal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.formal-table th,
+.formal-table td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Increase padding for better spacing */
+  text-align: left;
+}
+.headings{
+color: black;
+}
+.formal-table th {
+  background-color: #e6f7ff;
+}
+
+.formal-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+
 .highlighted-row {
-  font-weight: bold; 
+  font-weight: bold;
+  border: 1px solid red;
+  color: red;
+  background-color: #ffff99 !important;
 }
