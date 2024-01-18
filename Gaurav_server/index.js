@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 mongoose.connect("mongodb://localhost:27017/GradeTracker");
                
 let uid = 0; 
-let chk = 0;
+let chk = 0;  
 let fq = {};
 let Name='';
 
@@ -32,7 +32,7 @@ app.get('/getRanksData', async (req, res) => {
         const subjects = await UserModel.distinct('subject');
         const tests=await UserModel.distinct('testType');
     res.json({
-      grades: grades,
+      grades: grades, 
       subjects: subjects,
       tests:tests, 
     });
