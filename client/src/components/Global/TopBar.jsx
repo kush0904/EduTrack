@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, IconButton, Menu, MenuItem, useTheme, Typography } from '@mui/material';
+import { Box, IconButton, Menu, MenuItem, useTheme, Typography, Tooltip } from '@mui/material';
 import { useContext } from 'react';
 import { ColorModeContext, tokens } from '../theme';
 import InputBase from '@mui/material/InputBase';
@@ -49,13 +49,15 @@ export default function TopBar({ isCollapsed }) {
       {/* SEARCH BAR */}
       <Box
         display="flex"
-        backgroundColor={colors.primary[800]}
         borderRadius="3px"
       >
-        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" color="red" />
-        <IconButton type="button" sx={{ p: 1 }}>
-          <SearchIcon />
-        </IconButton>
+        <Typography
+              variant="h5"
+              color={colors.grey[300]}
+              sx={{ m: "15px 20px 5px 20px" }}
+            >
+              Tracking Academic Success Efficiently
+            </Typography>
       </Box>
 
       {/* ICONS */}
@@ -67,12 +69,14 @@ export default function TopBar({ isCollapsed }) {
             <LightModeOutlinedIcon />
           )}
         </IconButton>
-        <IconButton onClick={handleMenuOpen}>
-          <NotificationsOutlinedIcon />
-        </IconButton>
-        <IconButton>
-          <SettingsOutlinedIcon />
-        </IconButton>
+        <Tooltip title="No new notifications for you">
+          <span>
+            <IconButton>
+              <NotificationsOutlinedIcon />
+            </IconButton>
+          </span>
+        </Tooltip>
+
         <IconButton onClick={handleMenuOpen}>
           <PersonOutlinedIcon />
         </IconButton>
