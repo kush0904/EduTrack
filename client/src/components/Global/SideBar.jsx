@@ -21,7 +21,8 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import FlagIcon from '@mui/icons-material/Flag';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import PersonIcon from '@mui/icons-material/Person';
-
+import QuizIcon from '@mui/icons-material/Quiz';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -178,9 +179,9 @@ const Sidebars = ({ userName }) => {
               setSelected={setSelected}
             />
             <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
+              title="Resources"
+              to="/ResourceLibrary"
+              icon={<AutoStoriesIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -223,9 +224,9 @@ const Sidebars = ({ userName }) => {
               Charts
             </Typography>
             <Item
-              title="Bar Chart"
-              to="/bar"
-              icon={<BarChartOutlinedIcon />}
+              title="FAQs"
+              to="/Faq"
+              icon={<QuizIcon />}
               selected={selected}
               setSelected={setSelected}
             />

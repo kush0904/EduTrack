@@ -18,6 +18,7 @@ import GoalSetting from './components/GoalSetting/GoalSetting.jsx';
 import GoalsList from './components/GoalSetting/GoalsList';
 import GoalsCalendar from './components/GoalSetting/GoalsCalender.jsx';
 import BooksResourcePage from './components/ResourceLibrary/ResourceLibrary.jsx';
+import Faq from './components/Faq/Faq.jsx';
 
 
 function App() {
@@ -86,8 +87,10 @@ function App() {
                 <Route path="/GoalSetting" element={<GoalSetting userName={userName} userId={userId}/>} />
                 <Route path="/GoalsList" element={<GoalsList userName={userName} userId={userId}/>} />
                 <Route path="/goalsCalender" element={<GoalsCalendar userName={userName} userId={userId} />} />
+                <Route path="/ResourceLibrary" element={<BooksResourcePage userName={userName} userId={userId} />} />
+                <Route path="/Faq" element={<Faq userName={userName} userId={userId} />} />
 
-              </Routes>
+              </Routes> 
             </main>
           </div>
         </ThemeProvider>

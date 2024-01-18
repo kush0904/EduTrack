@@ -8,7 +8,8 @@ const Dashboard = () => {
   return (
       <Box m="20px">
         <Box alignItems="center">
-          <Header title="DASHBOARD" subtitle="" />
+          <Header title="EDUTRACK+" subtitle="" />
+          <h4 style={{textAlign:"center", marginBottom:"4vh"}}>Tracking Academic Success Efficiently</h4>
           <ChatBot />
         </Box>  
       </Box>
