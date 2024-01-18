@@ -5,18 +5,17 @@ import UniImage from '../../assets/university.png';
 import degree from '../../assets/degree.png';
 import id from '../../assets/Id.png';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import Modal from 'react-modal';
 import { Box } from '@mui/material';
 import Header from '../Global/Header';
 
-function GradeTracker() {
+function GradeTracker({userName,userId,setallGrades,setAllTestTypes,setAllSubjects}) {
   const [grades, setGrades] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newGrade, setNewGrade] = useState({
     subject: '',
     testType: '',
-    date: '',
     maxMarks: 0,
     scoredMarks: 0,
   });
@@ -24,26 +23,37 @@ function GradeTracker() {
   const [isRemoveMode, setIsRemoveMode] = useState(false);
   const [selectedSortOption, setSelectedSortOption] = useState('Subject');
   const [sortOrder, setSortOrder] = useState('ASC');
-  const [uid, setUid] = useState(0); 
-  const [Name,setname]=useState("No one Logged In");
+
+
+  
   const fetchGrades = () => {
     axios.get('http://localhost:4001/getGrades')
       .then(response => {
         setGrades(response.data);
-        setUid(response.data[0].clg_id);
-        setname(response.data[0].Name);
-
         })
       .catch(err => console.log(err));
-  };
-
-console.log(Name);
- 
+  }; 
 useEffect(() => {
   fetchGrades(); 
 }, []); 
-console.log(uid);
-console.log(Name);
+const fetchRanksData = () => {
+  axios.get('http://localhost:4001/getRanksData')
+  .then(response => {
+    const grades = response.data.grades;
+    const subjects = response.data.subjects;
+    const tests=response.data.tests;
+    setallGrades(grades);
+    setAllSubjects(subjects);
+    setAllTestTypes(tests);
+
+
+  })
+    .catch(err => console.log(err));
+}; 
+useEffect(() => {
+  fetchRanksData(); 
+}, []); 
+
     const handleSortChange = (event) => {  
     const selectedOption = event.target.value;
     setSelectedSortOption(selectedOption);
@@ -163,7 +173,6 @@ console.log(Name);
             setNewGrade({
               subject: '',
               testType: '',
-              date: '',
               maxMarks: 0,
               scoredMarks: 0,
 
@@ -182,13 +191,13 @@ console.log(Name);
       <div className="Grade-Box1">
         <div className='Grade-UserInfo'>
           <img src={UserImage} alt="User" className="Grade-user-image" /> 
-          <span className="Grade-username">{Name} </span>
+          <span className="Grade-username">{userName} </span>
           <img src={UniImage} alt="User" className="Grade-user-image" />
           <span className="Grade-username">Chitkara University</span>
           <img src={degree} alt="User" className="Grade-user-image" />
           <span className="Grade-username">Computer Science</span>
           <img src={id} alt="User" className="Grade-user-image" />
-          <span className="Grade-username">{uid}</span>
+          <span className="Grade-username">{userId}</span>
         </div>
       </div>
       <div className="Grade-Box2">
@@ -261,7 +270,6 @@ console.log(Name);
                 <th>Sr.No</th>
                 <th>Subject</th>
                 <th>Test-Type</th>
-                <th>Date</th>
                 <th>Max-Marks</th>
                 <th>Scored-Marks</th>
                 <th>Percentage</th>
@@ -279,7 +287,6 @@ console.log(Name);
                     
                   <td>{grade.subject}</td>
                   <td>{grade.testType}</td>
-                  <td>{grade.Date}</td>
                   <td>{grade.maxMarks}</td>
                   <td>{grade.scoredMarks}</td>
                   <td>{calculatePercentage(grade.maxMarks,grade.scoredMarks)}%</td>
@@ -289,8 +296,7 @@ console.log(Name);
           </table>  
         </div>
         <hr style={{ height: '3px', border: 'none', backgroundColor: 'hsl( 196.18deg 100% 52.75% )', marginLeft: '8px', marginRight: '8px', }} />      
-        
-          <Modal className={'Grade-addModal'}
+        <Modal className={'Grade-addModal'}
   isOpen={isModalOpen}
   onRequestClose={closeModal}
   contentLabel="Add Grade Modal"
@@ -299,38 +305,40 @@ console.log(Name);
   <form className='Grade-form'>
     <div className="Grade-form-group">
       <label htmlFor="subject" className='Grade-label'>Subject:</label>
-      <input
-      className='Grade-input'
-
-        type="text"
+      <select
+        className='Grade-input'
         id="subject"
         name="subject"
         value={newGrade.subject}
         onChange={handleInputChange}
-      />
+      >
+        <option value="">Select Subject</option> {/* Default "Select" option */}
+        <option value="DSA">DSA</option>
+        <option value="JAVA">JAVA</option>
+        <option value="NALR">NALR</option>
+        <option value="ENGLISH">ENGLISH</option>
+        <option value="WDMS">WDMS</option>
+      </select>
     </div>
     <div className="Grade-form-group">
       <label htmlFor="testType" className='Grade-label'>Test Type:</label>
-      <input
-        type="text"
+      <select
         id="testType"
         name="testType"
         value={newGrade.testType}
         onChange={handleInputChange}
-      />
+        className='Grade-input'
+      >
+        <option value="">Select Test Type</option> {/* Default "Select" option */}
+        <option value="ST1">ST1</option>
+        <option value="ST2">ST2</option>
+        <option value="ST3">ST3</option>
+        <option value="ETE">ETE</option>
+        <option value="FA1">FA1</option>
+        <option value="FA2">FA2</option>
+      </select>
     </div>
-    <div className="Grade-form-group">
-      <label htmlFor="date" className='Grade-label'>Date:</label>
-      <input
-      className='Grade-input'
-
-        type="date"
-        id="date"
-        name="date"
-        value={newGrade.date}
-        onChange={handleInputChange}
-      />
-    </div>
+    
     <div className="Grade-form-group">
       <label htmlFor="maxMarks" className='Grade-label'>Max Marks:</label>
       <input
@@ -345,8 +353,7 @@ console.log(Name);
     <div className="Grade-form-group">
       <label htmlFor="scoredMarks" className='Grade-label'>Scored Marks:</label>
       <input
-         className='Grade-input'
-
+        className='Grade-input'
         type="number"
         id="scoredMarks"
         name="scoredMarks"
@@ -354,10 +361,10 @@ console.log(Name);
         onChange={handleInputChange}
       />
     </div>
-    <button type="button"  className='Grade-add' onClick={handleAddGrade}>Add Grade</button>
+    <button type="button" className='Grade-add' onClick={handleAddGrade}>Add Grade</button>
   </form>
 </Modal>
-       
+
       </div>
       
     </div>
