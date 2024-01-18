@@ -1,23 +1,28 @@
+// UpdatePopup.jsx
 import React, { useState } from 'react';
 import { RxCross1 } from 'react-icons/rx';
 import { baseURL } from './constant';
-import axios from "axios";
+import axios from 'axios';
 
 const UpdatePopup = ({ setShowPopup, popupContent, setUpdateUI, dateGoals }) => {
-  const [currentGoalIndex, setCurrentGoalIndex] = useState(0);
-  const input = dateGoals && dateGoals.length > 0 ? dateGoals[currentGoalIndex].goal : '';
-  const [deadline, setDeadline] = useState(dateGoals && dateGoals.length > 0 ? dateGoals[currentGoalIndex].deadline : '');
+  const [updatedInput, setUpdatedInput] = useState(dateGoals && dateGoals.length > 0 ? dateGoals[0].goal : '');
+  const [deadline, setDeadline] = useState(dateGoals && dateGoals.length > 0 ? dateGoals[0].deadline : '');
 
   const updateGoal = () => {
     if (!dateGoals || dateGoals.length === 0) {
       return;
     }
-    const currentGoalId = dateGoals[currentGoalIndex]._id;
-    axios.put(`${baseURL}/updateGoals/${currentGoalId}`, { goal: input, deadline })
+    const currentGoalId = dateGoals[0]._id; // Make sure to get the correct goal ID
+    axios
+      .put(`${baseURL}/updateGoals/${currentGoalId}`, { goal: updatedInput, deadline })
       .then((res) => {
         console.log(res.data);
         setUpdateUI((prevState) => !prevState);
         setShowPopup(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle error, e.g., show an alert
       });
   };
 
@@ -28,8 +33,8 @@ const UpdatePopup = ({ setShowPopup, popupContent, setUpdateUI, dateGoals }) => 
         <h1>Update Goal</h1>
         <div className="popup__input_holder">
           <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            value={updatedInput}
+            onChange={(e) => setUpdatedInput(e.target.value)}
             type="text"
             placeholder="Update Goal.."
             style={{ backgroundColor: '#eaeaea', padding: '5px' }}
@@ -43,12 +48,10 @@ const UpdatePopup = ({ setShowPopup, popupContent, setUpdateUI, dateGoals }) => 
             style={{ backgroundColor: '#eaeaea', padding: '5px' }}
           />
           <button onClick={updateGoal} style={{ backgroundColor: '#eaeaea', padding: '5px' }}>Update</button>
-
-       
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default UpdatePopup;
