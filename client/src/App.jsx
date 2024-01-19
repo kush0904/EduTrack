@@ -25,10 +25,14 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState(0);
+
   const [allgrades, setallGrades] = useState([]);
   const [allSubjects, setAllSubjects] = useState([]); 
   const [allTestTypes, setAllTestTypes] = useState([]);
+  
   console.log(userId,allgrades,allSubjects,allTestTypes);
+
+  
   useEffect(() => {
     const storedLoggedIn = localStorage.getItem('loggedIn');
     const storedUserName = localStorage.getItem('userName');

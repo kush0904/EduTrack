@@ -185,7 +185,7 @@ useEffect(() => {
 
   return (
     
-    <Box m="20px">
+    <Box m="20px"  style={{ overflow: "auto", height: "80vh" }}x>
     <Header title = "Grades Tracker" subtitle="Look!! Where you stand" />
     <div className="Grade-container">
       <div className="Grade-Box1">

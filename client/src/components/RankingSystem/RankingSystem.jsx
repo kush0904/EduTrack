@@ -14,7 +14,7 @@ const RankingSystem = ({ userId, allgrades, allSubjects, allTestTypes }) => {
   const [showAllRankings, setShowAllRankings] = useState(false);
   const [visibleRanks, setVisibleRanks] = useState(5);
   const [selectedSub, setselectedSub] = useState("DSA"); // Default to "DSA"
-  const [selectedType, setselectedType] = useState("ST1"); // Default to "ST1"
+  const [selectedType, setselectedType] = useState("ST2"); // Default to "ST1"
   const [searchResults, setSearchResults] = useState("");
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const RankingSystem = ({ userId, allgrades, allSubjects, allTestTypes }) => {
   const handleSeeAll = () => {
     setShowAllRankings(true);
     setselectedSub("DSA"); 
-    setselectedType("ST1"); 
+    setselectedType("ST2"); 
   };
 
   return (
