@@ -298,3 +298,46 @@ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: auto;
   margin-right: 3px;
 }
+@media screen and (max-width: 600px) {
+  .Grade-srn,
+  .Grade-table th:nth-child(1),
+  .Grade-table td:nth-child(1), 
+  .Grade-table th:nth-child(4), 
+  .Grade-table td:nth-child(4), 
+  .Grade-table th:nth-child(5),
+  .Grade-table td:nth-child(5),
+  .Grade-filter-modal,
+  .Grade-Box1,
+  .button-30 {
+    display: none;
+  }
+  .button-30 {
+    width: 100%;
+    margin: 0;
+  }
+  .Grade-container {
+    align-items: center;
+  }
+
+  .Grade-Grades {
+    overflow-x: auto;
+  }
+
+  .Grade-table {
+    width: 100%;
+  }
+
+  .ReactModal__Content {
+    max-width: 100%;
+  }
+
+  .Grade-Heading {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .button-30 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
